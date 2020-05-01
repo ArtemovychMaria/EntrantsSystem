@@ -9,12 +9,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 @Service
 public class UserService {
 
-    private static final Set<UserRole> DEFAULT_USER_ROLES = Collections.singleton(UserRole.USER);
+    private static final Set<UserRole> DEFAULT_USER_ROLES = Collections.singleton(UserRole.ROLE_USER);
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
 
@@ -22,6 +23,10 @@ public class UserService {
     public UserService(UserRepository userRepository,PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+    }
+
+    public List<User> readAll(){
+        return userRepository.findAll();
     }
 
     public void save(UserDto userDto) {

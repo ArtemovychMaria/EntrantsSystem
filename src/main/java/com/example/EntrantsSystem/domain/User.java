@@ -7,9 +7,11 @@ import java.util.Set;
 @Table(name = "users")
 public class User {
 
+    private static final long serialVersionUID=1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+//    @Column(name = "user_id")
     private int id;
 
     private String username;
