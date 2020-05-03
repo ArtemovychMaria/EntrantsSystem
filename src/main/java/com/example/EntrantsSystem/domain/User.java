@@ -25,6 +25,8 @@ public class User {
     private String adress;
     private String email;
     private String password;
+    private boolean isEmailVerified;
+    private String verifyEmailHash;
 
     @Enumerated(EnumType.ORDINAL)
     @ElementCollection(targetClass = UserRole.class,fetch = FetchType.EAGER)
@@ -115,6 +117,22 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isEmailVerified() {
+        return isEmailVerified;
+    }
+
+    public void setEmailVerified(boolean emailVerified) {
+        isEmailVerified = emailVerified;
+    }
+
+    public String getVerifyEmailHash() {
+        return verifyEmailHash;
+    }
+
+    public void setVerifyEmailHash(String verifyEmailHash) {
+        this.verifyEmailHash = verifyEmailHash;
     }
 
     public Set<UserRole> getRoles() {

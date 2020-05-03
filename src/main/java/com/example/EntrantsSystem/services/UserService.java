@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -18,11 +19,14 @@ public class UserService {
     private static final Set<UserRole> DEFAULT_USER_ROLES = Collections.singleton(UserRole.ROLE_USER);
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
+    private final EmailSendingService emailSendingService;
 
     @Autowired
-    public UserService(UserRepository userRepository,PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository,PasswordEncoder passwordEncoder,
+                       EmailSendingService emailSendingService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.emailSendingService = emailSendingService;
     }
 
     public List<User> readAll(){
@@ -32,7 +36,20 @@ public class UserService {
     public void save(UserDto userDto) {
         String encodePassword = passwordEncoder.encode(userDto.getPassword());
         User user=new User(userDto.getUsername(),userDto.getFirstName(),userDto.getLastName(),
-                Integer.parseInt(userDto.getAge()),userDto.getGender(),userDto.getEmail(),encodePassword,DEFAULT_USER_ROLES);
+                Integer.parseInt(userDto.getAge()),userDto.getGender(),
+                userDto.getEmail(),encodePassword,DEFAULT_USER_ROLES);
+
+        user.setEmailVerified(false);
+        UUID uuid = UUID.randomUUID();
+        user.setVerifyEmailHash(uuid.toString());
+
         userRepository.saveAndFlush(user);
+
+        emailSendingService.sendVerificationEmail(userDto.getEmail(), uuid.toString());
+    }
+
+    public void confirmEmail(String hash) {
+        userRepository.findByVerifyEmailHash(hash)
+                .ifPresent(user -> userRepository.confirmEmail(user.getId()));
     }
 }

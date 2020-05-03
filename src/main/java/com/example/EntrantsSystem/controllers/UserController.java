@@ -5,8 +5,10 @@ import com.example.EntrantsSystem.dto.UserDto;
 import com.example.EntrantsSystem.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Iterator;
@@ -34,5 +36,11 @@ public class UserController {
             userService.save(userDto);
             return "redirect:/login";
         }
+    }
+
+    @GetMapping("/confirmEmail")
+    public String confirmEmail(@RequestParam String hash) {
+        userService.confirmEmail(hash);
+        return "redirect:/login";
     }
 }

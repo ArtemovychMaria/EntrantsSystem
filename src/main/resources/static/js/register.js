@@ -34,7 +34,7 @@ function validateForm(){
     if(email.value == ""){
         email.style.border="1px solid red";
         document.getElementById("femail").innerHTML='*field is required';
-    }else if(at<1 || dot<at+2 || dot+2>=email.value.length){
+    }else if(at<1){
         document.getElementById("femail").innerHTML='*enter valid email (example: anna@mail.com';
     }
 
@@ -47,7 +47,7 @@ function validateForm(){
 
     if(username.value == "" || firstName.value == "" || lastName.value == "" || age.value == "" ||
         gender.value == "" || email.value == "" || password.value == "" || password.value.length<6
-        || at<1 || dot<at+2 || dot+2>=email.value.length){
+        || at<1){
         return false;
     }else {
         return true;
