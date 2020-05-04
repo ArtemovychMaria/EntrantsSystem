@@ -1,5 +1,10 @@
 package com.example.EntrantsSystem.dto;
 
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class UserDto {
     private String username;
     private String firstName;

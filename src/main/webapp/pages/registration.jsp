@@ -1,3 +1,6 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,30 +18,34 @@
 </head>
 <body>
 
-<form name="registerForm" action="/create" onsubmit="return validateForm()" method="post">
+<form:form name="registerForm" modelAttribute="userDto" action="/create" method="post">
 
     <h3>Sign Up</h3>
 <%--    <div class="main">--%>
 <%--    <div class="wraper">--%>
     <div class="group">
-        <label for="username">Username:</label>
-        <input class="form-control" type="text" id="username" name="username" placeholder="Username">
-        <span id="fusername"></span>
+        <form:label for="username" path="username">Username:</form:label>
+        <form:input class="form-control" type="text" path="username" id="username" name="username" placeholder="Username"/>
+        <form:errors path="username"/>
+<%--        <span id="fusername"></span>--%>
     </div>
     <div class="group">
-        <label for="firstName">Name:</label>
-        <input class="form-control" type="text" id="firstName" name="firstName" placeholder="First name">
-        <span id="ffirstName"></span>
+        <form:label for="firstName" path="firstName">Name:</form:label>
+        <form:input class="form-control" type="text" path="firstName" id="firstName" name="firstName" placeholder="First name"/>
+        <form:errors path="firstName"/>
+<%--        <span id="ffirstName"></span>--%>
     </div>
     <div class="group">
-        <label for="lastName">Surame:</label>
-    <input class="form-control" type="text" id="lastName" name="lastName" placeholder="Last name">
-        <span id="flastName"></span>
+        <form:label for="lastName" path="lastName">Surame:</form:label>
+    <form:input class="form-control" type="text" path="lastName" id="lastName" name="lastName" placeholder="Last name"/>
+        <form:errors path="lastName"/>
+<%--        <span id="flastName"></span>--%>
     </div>
     <div class="group">
-        <label for="age">Age:</label>
-    <input class="form-control" type="text" id="age" name="age" placeholder="Age">
-        <span id="fage"></span>
+        <form:label for="age" path="age">Age:</form:label>
+    <form:input class="form-control" type="text" path="age" id="age" name="age" placeholder="Age"/>
+        <form:errors path="age"/>
+<%--        <span id="fage"></span>--%>
     </div>
     <div class="group">
         <label>Gender:</label>
@@ -55,14 +62,16 @@
 <%--    </div>--%>
 <%--    <div class="wraper">--%>
     <div class="group">
-        <label for="email">Email:</label>
-    <input type="email" id="email" class="form-control" name="email" placeholder="Email">
-        <span id="femail"></span>
+        <form:label for="email" path="email">Email:</form:label>
+    <form:input type="email" path="email" id="email" class="form-control" name="email" placeholder="Email"/>
+        <form:errors path="email"/>
+<%--        <span id="femail"></span>--%>
     </div>
     <div class="group">
-        <label for="password">Password:</label>
-    <input type="password" id="password" class="form-control" name="password" placeholder="Password">
-        <span id="fpassword"></span>
+        <form:label  for="password" path="password">Password:</form:label>
+    <form:input type="password" path="password" id="password" class="form-control" name="password" placeholder="Password"/>
+        <form:errors path="password"/>
+<%--        <span id="fpassword"></span>--%>
     </div>
 <%--    </div>--%>
 <%--    </div>--%>
@@ -75,7 +84,7 @@
     </div>
     </div>
 
-</form>
+</form:form>
 
 
 <!-- Optional JavaScript -->

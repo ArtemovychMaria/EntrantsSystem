@@ -22,4 +22,7 @@ public interface UserRepository extends JpaRepository<User,Integer> {
     @Modifying
     @Query("Update User u set u.isEmailVerified=TRUE where u.id = :userId")
     void confirmEmail(@Param("userId") int userId);
+
+    Optional<User> findByEmail(String email);
+
 }
