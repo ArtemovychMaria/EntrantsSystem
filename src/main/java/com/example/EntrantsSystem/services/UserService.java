@@ -16,7 +16,7 @@ import java.util.UUID;
 @Service
 public class UserService {
 
-    private static final Set<UserRole> DEFAULT_USER_ROLES = Collections.singleton(UserRole.ROLE_USER);
+    private static final Set<UserRole> DEFAULT_USER_ROLES = Collections.singleton(UserRole.ROLE_ADMIN);
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
     private final EmailSendingService emailSendingService;

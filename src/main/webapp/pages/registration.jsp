@@ -21,32 +21,33 @@
 <form:form name="registerForm" modelAttribute="userDto" action="/create" method="post">
 
     <h3>Sign Up</h3>
+
 <%--    <div class="main">--%>
 <%--    <div class="wraper">--%>
     <div class="group">
         <form:label for="username" path="username">Username:</form:label>
         <form:input class="form-control" type="text" path="username" id="username" name="username" placeholder="Username"/>
         <form:errors path="username"/>
-<%--        <span id="fusername"></span>--%>
     </div>
+
     <div class="group">
         <form:label for="firstName" path="firstName">Name:</form:label>
         <form:input class="form-control" type="text" path="firstName" id="firstName" name="firstName" placeholder="First name"/>
         <form:errors path="firstName"/>
-<%--        <span id="ffirstName"></span>--%>
     </div>
+
     <div class="group">
         <form:label for="lastName" path="lastName">Surame:</form:label>
     <form:input class="form-control" type="text" path="lastName" id="lastName" name="lastName" placeholder="Last name"/>
         <form:errors path="lastName"/>
-<%--        <span id="flastName"></span>--%>
     </div>
+
     <div class="group">
         <form:label for="age" path="age">Age:</form:label>
     <form:input class="form-control" type="text" path="age" id="age" name="age" placeholder="Age"/>
         <form:errors path="age"/>
-<%--        <span id="fage"></span>--%>
     </div>
+
     <div class="group">
         <label>Gender:</label>
     <div class="form-check form-check-inline">
@@ -65,13 +66,12 @@
         <form:label for="email" path="email">Email:</form:label>
     <form:input type="email" path="email" id="email" class="form-control" name="email" placeholder="Email"/>
         <form:errors path="email"/>
-<%--        <span id="femail"></span>--%>
     </div>
+
     <div class="group">
         <form:label  for="password" path="password">Password:</form:label>
     <form:input type="password" path="password" id="password" class="form-control" name="password" placeholder="Password"/>
         <form:errors path="password"/>
-<%--        <span id="fpassword"></span>--%>
     </div>
 <%--    </div>--%>
 <%--    </div>--%>

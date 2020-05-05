@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,15 +14,10 @@
     <link href="css/app.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+
+<jsp:include page="header.jsp"/>
+
 <h3>Welcome!</h3>
-
-<form action="/logout" method="post">
-
-    <input type="submit" value="Log Out"/>
-        <input type="hidden" name="${_csrf.parameterName}"
-               value="${_csrf.token}"/>
-
-</form>
 
 
 
