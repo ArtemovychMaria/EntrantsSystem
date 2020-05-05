@@ -7,10 +7,14 @@ import java.util.Set;
 @Table(name = "users")
 public class User {
 
+    private static final long serialVersionUID=1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+//    @Column(name = "user_id")
     private int id;
+
+    private String username;
 
     @Column(name = "first_name")
     private String firstName;
@@ -21,6 +25,8 @@ public class User {
     private String adress;
     private String email;
     private String password;
+    private boolean isEmailVerified;
+    private String verifyEmailHash;
 
     @Enumerated(EnumType.ORDINAL)
     @ElementCollection(targetClass = UserRole.class,fetch = FetchType.EAGER)
@@ -29,12 +35,32 @@ public class User {
     public User() {
     }
 
+    public User(String username, String firstName, String lastName,
+                int age, String gender, String email, String password, Set<UserRole> roles) {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.gender = gender;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getFirstName() {
@@ -91,6 +117,22 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isEmailVerified() {
+        return isEmailVerified;
+    }
+
+    public void setEmailVerified(boolean emailVerified) {
+        isEmailVerified = emailVerified;
+    }
+
+    public String getVerifyEmailHash() {
+        return verifyEmailHash;
+    }
+
+    public void setVerifyEmailHash(String verifyEmailHash) {
+        this.verifyEmailHash = verifyEmailHash;
     }
 
     public Set<UserRole> getRoles() {

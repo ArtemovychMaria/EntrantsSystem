@@ -1,0 +1,83 @@
+body{
+    font-family:Cambria;
+}
+form{
+    width: 400px;
+    height: 450px;
+    margin: 20px auto;
+    padding: 15px;
+}
+
+/*.wraper{*/
+/*    width: 400px;*/
+/*    height: 400px;*/
+/*    margin: 5px;*/
+/*}*/
+
+/*.main{*/
+/*    width: 800px;*/
+/*    display: flex;*/
+/*}*/
+
+
+h3{
+    color: dodgerblue;
+    text-align: center;
+    border-bottom: 3px solid dodgerblue;
+    padding-bottom: 5px;
+}
+
+.group{
+    margin: 5px;
+}
+
+
+label{
+    text-transform: uppercase;
+    color: dodgerblue;
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+    width: 350px;
+}
+
+span{
+    color: red;
+}
+
+input[type="email"]:focus{
+    border: 2px solid dodgerblue ;
+}
+
+input[type="text"]:focus{
+    border: 2px solid dodgerblue ;
+}
+
+input[type="password"]:focus{
+    border: 2px solid dodgerblue ;
+}
+
+input[type="submit"]{
+    width: 100px;
+    margin: auto;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+input[type="submit"]:hover{
+    background-color: dodgerblue;
+}
+
+a{
+    color: dodgerblue;
+}
+
+p{
+    color: coral;
+}
+
+.group2{
+    width: 350px;
+    display: flex;
+    justify-content: center;
+}
