@@ -1,6 +1,5 @@
 <!doctype html>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
-<%@ taglib prefix="secuurity" uri="http://www.springframework.org/security/tags" %>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -16,9 +15,9 @@
 <body>
 <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="/faculties/new">Add faculty</a>
+        <a href="/new">Add new faculty</a>
         <a href="#">Statements</a>
-        <a href="#">Clients</a>
+        <a href="/newSubject">Add new subject</a>
         <a href="#">Contact</a>
     </div>
 
@@ -27,7 +26,7 @@
     <!-- Use any element to open the sidenav -->
         <span onclick="openNav()">Menu</span>
 
-    <secuurity:authorize access="isAuthenticated()">
+    <security:authorize access="isAuthenticated()">
         <security:authentication property="principal.username" />
         <div class="now_group">
         <form action="/logout" method="post">
@@ -36,7 +35,7 @@
                    value="${_csrf.token}"/>
         </form>
         </div>
-    </secuurity:authorize>
+    </security:authorize>
 
 
     <security:authorize access="!isAuthenticated()">
