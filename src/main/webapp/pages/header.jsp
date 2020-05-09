@@ -15,10 +15,16 @@
 <body>
 <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <security:authorize access="hasRole('ROLE_ADMIN')">
         <a href="/new">Add new faculty</a>
-        <a href="#">Statements</a>
+    </security:authorize>
+    <security:authorize access="hasRole('ROLE_ADMIN')">
+        <a href="/confirm">Confirming applications</a>
+    </security:authorize>
+    <security:authorize access="hasRole('ROLE_ADMIN')">
         <a href="/newSubject">Add new subject</a>
-        <a href="#">Contact</a>
+    </security:authorize>
+        <a href="/allFaculties">Faculties</a>
     </div>
 
 
@@ -28,13 +34,11 @@
 
     <security:authorize access="isAuthenticated()">
         <security:authentication property="principal.username" />
-        <div class="now_group">
         <form action="/logout" method="post">
-            <input type="submit" value="Log Out"/>
+            <input type="submit" class="btn btn-outline-success ml-2 my-2 my-sm-0" value="Log Out"/>
             <input type="hidden" name="${_csrf.parameterName}"
                    value="${_csrf.token}"/>
         </form>
-        </div>
     </security:authorize>
 
 

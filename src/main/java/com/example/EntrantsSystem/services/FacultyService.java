@@ -8,8 +8,7 @@ import com.example.EntrantsSystem.repositories.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -38,5 +37,21 @@ public class FacultyService {
         faculty.addSubject(subject2);
         faculty.addSubject(subject3);
         facultyRepository.save(faculty);
+    }
+
+    public void save(Faculty faculty){
+        facultyRepository.save(faculty);
+    }
+
+    public List<Faculty> getAll(){
+        return facultyRepository.findAll();
+    }
+
+    public Optional<Faculty> getById(int id) {
+        return facultyRepository.findById(id);
+    }
+
+    public Optional<Faculty> readById(int id) {
+        return facultyRepository.findById(id);
     }
 }
