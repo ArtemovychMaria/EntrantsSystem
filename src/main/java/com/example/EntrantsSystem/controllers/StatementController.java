@@ -55,8 +55,44 @@ public class StatementController {
         return "addStatement";
     }
 
-    @GetMapping("/confirm")
+    @GetMapping("/applications")
     public String getConfirmApplicationPage(Model model){
-        return "confirmApplications";
+        model.addAttribute("statements", statementService.readAllUnconfirmed());
+        return "confirmingApplications";
     }
+
+    @GetMapping("/confirm")
+    public String confirm(@RequestParam(value = "id") int statementId){
+        Optional<Statement> maybeStatement = statementService.readById(statementId);
+        if(maybeStatement.isPresent()){
+            Statement statement = maybeStatement.get();
+            statement.setConfirmed(true);
+            statementService.save(statement);
+        }
+        return "home";
+    }
+
+    @GetMapping("/reject")
+    public String reject(@RequestParam(value = "id") int statementId){
+        Optional<Statement> maybeStatement = statementService.readById(statementId);
+        if(maybeStatement.isPresent()){
+            Statement statement = maybeStatement.get();
+            statement.setRejected(true);
+            statementService.save(statement);
+        }
+        return "home";
+    }
+
+    @GetMapping("/show")
+    public String showAll(@RequestParam(value = "id") int facultyId,Model model){
+        Optional<Faculty> byId = facultyService.getById(facultyId);
+        if(byId.isPresent()){
+            Faculty faculty = byId.get();
+            model.addAttribute("statements",statementService.showAllConfirmedByFaculty(faculty));
+            model.addAttribute("subjects",faculty.getRequiredSubjects());
+        }
+        return "allStatements";
+    }
+
+
 }

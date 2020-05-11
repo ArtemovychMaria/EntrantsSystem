@@ -18,12 +18,8 @@ public class Statement {
     @JoinColumn(name = "faculty_id")
     private Faculty faculty;
 
-    @Column(name = "first_subject_grade")
-    private int subjectGrade1;
-    @Column(name = "second_subject_grade")
-    private int subjectGrade2;
-    @Column(name = "third_subject_grade")
-    private int subjectGrade3;
+    @Column(name = "summary_subjects_grade")
+    private int summarySubjectsGrade;
 
     @Column(name = "certificate_grade")
     private double averageGradeOfCertificate;
@@ -31,8 +27,11 @@ public class Statement {
     @Column(name = "final_grade")
     private double finalGrade;
 
-    @Column(name = "is_confirmed")
-    private boolean isConfirmed;
+    @Column(name = "confirmed")
+    private boolean confirmed;
+
+    @Column(name = "rejected")
+    private boolean rejected;
 
     public Statement() {
     }
@@ -61,28 +60,12 @@ public class Statement {
         this.faculty = faculty;
     }
 
-    public int getSubjectGrade1() {
-        return subjectGrade1;
+    public int getSummarySubjectsGrade() {
+        return summarySubjectsGrade;
     }
 
-    public void setSubjectGrade1(int subjectGrade1) {
-        this.subjectGrade1 = subjectGrade1;
-    }
-
-    public int getSubjectGrade2() {
-        return subjectGrade2;
-    }
-
-    public void setSubjectGrade2(int subjectGrade2) {
-        this.subjectGrade2 = subjectGrade2;
-    }
-
-    public int getSubjectGrade3() {
-        return subjectGrade3;
-    }
-
-    public void setSubjectGrade3(int subjectGrade3) {
-        this.subjectGrade3 = subjectGrade3;
+    public void setSummarySubjectsGrade(int summarySubjectsGrade) {
+        this.summarySubjectsGrade = summarySubjectsGrade;
     }
 
     public double getAverageGradeOfCertificate() {
@@ -102,10 +85,18 @@ public class Statement {
     }
 
     public boolean isConfirmed() {
-        return isConfirmed;
+        return confirmed;
     }
 
     public void setConfirmed(boolean confirmed) {
-        isConfirmed = confirmed;
+        this.confirmed = confirmed;
+    }
+
+    public boolean isRejected() {
+        return rejected;
+    }
+
+    public void setRejected(boolean rejected) {
+        this.rejected = rejected;
     }
 }

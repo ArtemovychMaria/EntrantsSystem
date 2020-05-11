@@ -19,12 +19,15 @@
         <a href="/new">Add new faculty</a>
     </security:authorize>
     <security:authorize access="hasRole('ROLE_ADMIN')">
-        <a href="/confirm">Confirming applications</a>
+        <a href="/applications">Confirming applications</a>
     </security:authorize>
     <security:authorize access="hasRole('ROLE_ADMIN')">
         <a href="/newSubject">Add new subject</a>
     </security:authorize>
         <a href="/allFaculties">Faculties</a>
+    <security:authorize access="hasRole('ROLE_USER')">
+        <a href="/cabinet">Cabinet</a>
+    </security:authorize>
     </div>
 
 

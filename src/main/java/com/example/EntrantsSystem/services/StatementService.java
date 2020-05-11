@@ -8,7 +8,10 @@ import com.example.EntrantsSystem.repositories.StatementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.jws.soap.SOAPBinding;
 import javax.persistence.EntityManager;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StatementService {
@@ -30,13 +33,32 @@ public class StatementService {
         statement.setUser(user);
         statement.setFaculty(faculty);
         statement.setAverageGradeOfCertificate(statementDto.getCertificateGrade());
-        statement.setSubjectGrade1(statementDto.getSubjectGrade1());
-        statement.setSubjectGrade2(statementDto.getSubjectGrade2());
-        statement.setSubjectGrade3(statementDto.getSubjectGrade3());
-        statement.setFinalGrade(statementDto.getSubjectGrade1() + statementDto.getSubjectGrade2()
-                + statementDto.getSubjectGrade3() +
-                statementDto.getCertificateGrade());
+        int summarySubjectsGrade=statementDto.getSubjectGrade1() + statementDto.getSubjectGrade2()
+                + statementDto.getSubjectGrade3();
+        statement.setSummarySubjectsGrade(summarySubjectsGrade);
+        statement.setFinalGrade(summarySubjectsGrade + statementDto.getCertificateGrade());
         statement.setConfirmed(false);
+        statement.setRejected(false);
         statementRepository.save(statement);
+    }
+
+    public List<Statement> readAllRejectedByUser(User user){
+        return statementRepository.findByUserAndRejectedTrue(user);
+    }
+
+    public List<Statement> readAllUnconfirmed(){
+        return statementRepository.findByConfirmedFalseAndRejectedFalse();
+    }
+
+    public Optional<Statement> readById(int statementId){
+        return statementRepository.findById(statementId);
+    }
+
+    public void save(Statement statement){
+        statementRepository.save(statement);
+    }
+
+    public List<Statement> showAllConfirmedByFaculty(Faculty faculty){
+        return statementRepository.findByFacultyAndConfirmedTrueOrderByFinalGradeDesc(faculty);
     }
 }

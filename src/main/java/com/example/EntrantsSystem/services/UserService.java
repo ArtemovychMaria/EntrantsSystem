@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -51,5 +48,9 @@ public class UserService {
     public void confirmEmail(String hash) {
         userRepository.findByVerifyEmailHash(hash)
                 .ifPresent(user -> userRepository.confirmEmail(user.getId()));
+    }
+
+    public Optional<User> readById(int id){
+        return userRepository.findById(id);
     }
 }
