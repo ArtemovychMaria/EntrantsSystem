@@ -4,6 +4,8 @@ import com.example.EntrantsSystem.domain.User;
 import com.example.EntrantsSystem.domain.UserRole;
 import com.example.EntrantsSystem.dto.UserDto;
 import com.example.EntrantsSystem.repositories.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,8 @@ import java.util.*;
 
 @Service
 public class UserService {
+
+    private static final Logger Log= LoggerFactory.getLogger(UserService.class);
 
     private static final Set<UserRole> DEFAULT_USER_ROLES = Collections.singleton(UserRole.ROLE_USER);
     private UserRepository userRepository;
@@ -27,6 +31,7 @@ public class UserService {
     }
 
     public List<User> readAll(){
+        Log.info("Getting all users");
         return userRepository.findAll();
     }
 

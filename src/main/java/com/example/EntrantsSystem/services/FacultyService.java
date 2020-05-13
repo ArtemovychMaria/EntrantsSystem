@@ -5,6 +5,8 @@ import com.example.EntrantsSystem.domain.Subject;
 import com.example.EntrantsSystem.dto.FacultyDto;
 import com.example.EntrantsSystem.repositories.FacultyRepository;
 import com.example.EntrantsSystem.repositories.SubjectRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ import java.util.Optional;
 @Service
 public class FacultyService {
 
+    private static final Logger Log= LoggerFactory.getLogger(FacultyService.class);
 
     private FacultyRepository facultyRepository;
     private SubjectRepository subjectRepository;
@@ -25,8 +28,7 @@ public class FacultyService {
     }
 
     public void create(FacultyDto facultyDto){
-        Faculty faculty=new Faculty(facultyDto.getName(),
-                Integer.parseInt(facultyDto.getNumberOfStudents()));
+        Faculty faculty=new Faculty(facultyDto.getName(),facultyDto.getBudgetPlan(),facultyDto.getCommercialPlan());
         Subject subject1=subjectRepository.findByName(facultyDto.getSubjectName1());
         Subject subject2=subjectRepository.findByName(facultyDto.getSubjectName2());
         Subject subject3=subjectRepository.findByName(facultyDto.getSubjectName3());
@@ -40,6 +42,7 @@ public class FacultyService {
     }
 
     public void save(Faculty faculty){
+        Log.trace("Updating faculty");
         facultyRepository.save(faculty);
     }
 

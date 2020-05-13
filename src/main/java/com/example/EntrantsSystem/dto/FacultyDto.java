@@ -3,7 +3,8 @@ package com.example.EntrantsSystem.dto;
 public class FacultyDto {
 
     String name;
-    String numberOfStudents;
+    int budgetPlan;
+    int commercialPlan;
     String subjectName1;
     String subjectName2;
     String subjectName3;
@@ -16,12 +17,20 @@ public class FacultyDto {
         this.name = name;
     }
 
-    public String getNumberOfStudents() {
-        return numberOfStudents;
+    public int getBudgetPlan() {
+        return budgetPlan;
     }
 
-    public void setNumberOfStudents(String numberOfStudents) {
-        this.numberOfStudents = numberOfStudents;
+    public void setBudgetPlan(int budgetPlan) {
+        this.budgetPlan = budgetPlan;
+    }
+
+    public int getCommercialPlan() {
+        return commercialPlan;
+    }
+
+    public void setCommercialPlan(int commercialPlan) {
+        this.commercialPlan = commercialPlan;
     }
 
     public String getSubjectName1() {

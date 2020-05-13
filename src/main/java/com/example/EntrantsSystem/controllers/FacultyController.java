@@ -47,10 +47,11 @@ public class FacultyController {
     @PostMapping("/update")
     public String update(@RequestParam("id") int id,
                          @RequestParam("name") String name,
-                         @RequestParam("numberOfStudents") int numberOfStudents,
+                         @RequestParam("budgetPlan") int budgetPlan,
+                         @RequestParam("commercialPlan") int commercialPlan,
                          @RequestParam("subjectName1") String  subjectName1,@RequestParam("subjectName2") String  subjectName2,
                          @RequestParam("subjectName3") String  subjectName3){
-        Faculty faculty=new Faculty(name,numberOfStudents);
+        Faculty faculty=new Faculty(name,budgetPlan,commercialPlan);
         faculty.setId(id);
         faculty.setRequiredSubjects(new HashSet<>(Arrays.asList(subjectRepository.findByName(subjectName1),
                 subjectRepository.findByName(subjectName2),subjectRepository.findByName(subjectName3))));
@@ -71,7 +72,7 @@ public class FacultyController {
     }
 
     @GetMapping("/edit")
-    public String showAll(@RequestParam(value = "id") int facultyId, Model model){
+    public String getEditPage(@RequestParam(value = "id") int facultyId, Model model){
         Optional<Faculty> maybeFaculty = facultyService.readById(facultyId);
         if(maybeFaculty.isPresent()){
             Faculty faculty=maybeFaculty.get();

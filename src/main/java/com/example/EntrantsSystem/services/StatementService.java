@@ -5,6 +5,8 @@ import com.example.EntrantsSystem.domain.Statement;
 import com.example.EntrantsSystem.domain.User;
 import com.example.EntrantsSystem.dto.StatementDto;
 import com.example.EntrantsSystem.repositories.StatementRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,8 @@ import java.util.Optional;
 
 @Service
 public class StatementService {
+
+    private static final Logger Log= LoggerFactory.getLogger(StatementService.class);
 
     private final EntityManager entityManager;
     private final StatementRepository statementRepository;
@@ -43,6 +47,7 @@ public class StatementService {
     }
 
     public List<Statement> readAllRejectedByUser(int userId){
+        Log.info("Getting all rejected user`s statements");
         return statementRepository.findByUserIdAndRejectedTrue(userId);
     }
 
@@ -51,6 +56,7 @@ public class StatementService {
     }
 
     public Optional<Statement> readById(int statementId){
+        Log.info("Getting statement by id");
         return statementRepository.findById(statementId);
     }
 
@@ -59,6 +65,7 @@ public class StatementService {
     }
 
     public List<Statement> showAllConfirmedByFaculty(int facultyId){
+        Log.info("Showing all confirmed statements");
         return statementRepository.findByFacultyIdAndConfirmedTrueOrderByFinalGradeDesc(facultyId);
     }
 
