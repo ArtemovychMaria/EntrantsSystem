@@ -25,9 +25,15 @@
         <label for="name">Name:</label>
         <input class="form-control" type="text" id="name" name="name" placeholder="Name">
     </div>
+
     <div class="group">
-        <label for="numberOfStudents">Number of students:</label>
-        <input type="text" id="numberOfStudents" class="form-control" name="numberOfStudents" placeholder="Number of students">
+        <label for="budgetPlan">Number of students:</label>
+        <input type="number" id="budgetPlan" class="form-control" name="budgetPlan" placeholder="Budget plan">
+    </div>
+
+    <div class="group">
+        <label for="commercialPlan">Number of students:</label>
+        <input type="number" id="commercialPlan" class="form-control" name="commercialPlan" placeholder="Commercial plan">
     </div>
 
     <div class="group">

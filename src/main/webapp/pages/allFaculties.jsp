@@ -14,12 +14,14 @@
 
 </head>
 <body>
+<jsp:include page="header.jsp"/>
 <table class="table table-striped">
     <thead>
     <tr>
         <th scope="col">#</th>
         <th scope="col">Name</th>
-        <th scope="col">Plan</th>
+        <th scope="col">Budget Plan</th>
+        <th scope="col">Commercial Plan</th>
         <security:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
         <th scope="col">Action</th>
         </security:authorize>
@@ -31,7 +33,8 @@
     <tr>
         <th scope="row">${faculty.id}</th>
         <td>${faculty.name}</td>
-        <td>${faculty.numberOfStudents}</td>
+        <td>${faculty.budgetPlan}</td>
+        <td>${faculty.commercialPlan}</td>
         <security:authorize access="hasRole('ROLE_ADMIN')">
             <td><a href="/edit?id=${faculty.id}">edit</a></td>
         </security:authorize>

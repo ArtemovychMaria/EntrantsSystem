@@ -14,6 +14,8 @@
 </head>
 <body>
 
+<jsp:include page="header.jsp"/>
+
 
 <h4>My rejected applications</h4>
 <c:forEach var="statement" items="${rejectedStatements}">

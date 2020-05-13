@@ -15,6 +15,8 @@
 </head>
 <body>
 
+<jsp:include page="header.jsp"/>
+
 <table class="table table-striped">
     <thead>
     <tr>
@@ -24,18 +26,33 @@
         <th scope="col">Summary subjects grade</th>
         <th scope="col">Certificate grade</th>
         <th scope="col">Final Grade</th>
+        <th scope="col">Accepted</th>
     </tr>
     </thead>
     <tbody>
+    <%
+        int i=0;
+    %>
     <c:forEach var="statement" items="${statements}">
     <tr>
-        <th scope="row">${statement.id}</th>
+        <th scope="row"><%=++i %></th>
         <td>${statement.user.firstName}</td>
         <td>${statement.user.lastName}</td>
         <td>${statement.summarySubjectsGrade}</td>
         <td>${statement.averageGradeOfCertificate}</td>
         <td>${statement.finalGrade}</td>
-<%--        <td></td>--%>
+        <c:set var="j" value="<%=i%>"/>
+        <c:choose>
+            <c:when test="${j<statement.faculty.budgetPlan}">
+                <td>+</td>
+            </c:when>
+            <c:when test="${j>statement.faculty.budgetPlan && j<statement.faculty.commercialPlan}">
+                <td>$</td>
+            </c:when>
+            <c:when test="${j>statement.faculty.commercialPlan}">
+                <td>-</td>
+            </c:when>
+        </c:choose>
     </tr>
     </c:forEach>
     </tbody>

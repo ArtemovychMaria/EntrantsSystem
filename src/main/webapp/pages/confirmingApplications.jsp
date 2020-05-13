@@ -14,6 +14,7 @@
 
 </head>
 <body>
+<jsp:include page="header.jsp"/>
 <table class="table table-striped">
     <thead>
     <tr>
