@@ -42,8 +42,8 @@ public class StatementService {
         statementRepository.save(statement);
     }
 
-    public List<Statement> readAllRejectedByUser(User user){
-        return statementRepository.findByUserAndRejectedTrue(user);
+    public List<Statement> readAllRejectedByUser(int userId){
+        return statementRepository.findByUserIdAndRejectedTrue(userId);
     }
 
     public List<Statement> readAllUnconfirmed(){
@@ -58,7 +58,15 @@ public class StatementService {
         statementRepository.save(statement);
     }
 
-    public List<Statement> showAllConfirmedByFaculty(Faculty faculty){
-        return statementRepository.findByFacultyAndConfirmedTrueOrderByFinalGradeDesc(faculty);
+    public List<Statement> showAllConfirmedByFaculty(int facultyId){
+        return statementRepository.findByFacultyIdAndConfirmedTrueOrderByFinalGradeDesc(facultyId);
+    }
+
+    public void updateConfirmedById(boolean confirmed, int statementId){
+        statementRepository.updateConfirmedById(confirmed,statementId);
+    }
+
+    public void updateRejectedById(boolean rejected, int statementId){
+        statementRepository.updateRejectedById(rejected,statementId);
     }
 }

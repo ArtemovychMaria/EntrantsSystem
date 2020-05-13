@@ -69,10 +69,8 @@ public class UserController {
         if(maybeUser.isPresent()){
             User user=maybeUser.get();
             model.addAttribute("user", user);
-            model.addAttribute("rejectedStatements", statementService.readAllRejectedByUser(user));
+            model.addAttribute("rejectedStatements", statementService.readAllRejectedByUser(customUserDetails.getUserId()));
         }
         return "cabinet";
     }
-
-
 }

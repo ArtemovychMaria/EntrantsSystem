@@ -14,9 +14,10 @@
 </head>
 <body>
 
+
 <h4>My rejected applications</h4>
 <c:forEach var="statement" items="${rejectedStatements}">
-<p>You have rejected application yo faculty ${statement.faculty.name}</p>
+<p>You have rejected application to faculty ${statement.faculty.name}</p>
 </c:forEach>
 
 

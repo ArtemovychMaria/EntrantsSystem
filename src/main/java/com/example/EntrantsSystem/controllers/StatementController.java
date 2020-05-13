@@ -63,34 +63,19 @@ public class StatementController {
 
     @GetMapping("/confirm")
     public String confirm(@RequestParam(value = "id") int statementId){
-        Optional<Statement> maybeStatement = statementService.readById(statementId);
-        if(maybeStatement.isPresent()){
-            Statement statement = maybeStatement.get();
-            statement.setConfirmed(true);
-            statementService.save(statement);
-        }
+        statementService.updateConfirmedById(true,statementId);
         return "home";
     }
 
     @GetMapping("/reject")
     public String reject(@RequestParam(value = "id") int statementId){
-        Optional<Statement> maybeStatement = statementService.readById(statementId);
-        if(maybeStatement.isPresent()){
-            Statement statement = maybeStatement.get();
-            statement.setRejected(true);
-            statementService.save(statement);
-        }
+        statementService.updateRejectedById(true,statementId);
         return "home";
     }
 
     @GetMapping("/show")
     public String showAll(@RequestParam(value = "id") int facultyId,Model model){
-        Optional<Faculty> byId = facultyService.getById(facultyId);
-        if(byId.isPresent()){
-            Faculty faculty = byId.get();
-            model.addAttribute("statements",statementService.showAllConfirmedByFaculty(faculty));
-            model.addAttribute("subjects",faculty.getRequiredSubjects());
-        }
+            model.addAttribute("statements",statementService.showAllConfirmedByFaculty(facultyId));
         return "allStatements";
     }
 
