@@ -2,9 +2,12 @@ package com.example.EntrantsSystem.controllers;
 
 import com.example.EntrantsSystem.domain.User;
 import com.example.EntrantsSystem.dto.UserDto;
+import com.example.EntrantsSystem.security.CustomUserDetails;
+import com.example.EntrantsSystem.services.StatementService;
 import com.example.EntrantsSystem.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,18 +21,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UserController {
 
     UserService userService;
     Validator validator;
+    StatementService statementService;
 
     @Autowired
     public UserController(UserService userService,
-                          @Qualifier("userRegisterValidator") Validator validator) {
+                          @Qualifier("userRegisterValidator") Validator validator,
+                          StatementService statementService) {
         this.userService = userService;
         this.validator = validator;
+        this.statementService=statementService;
     }
 
     @PostMapping("/create")
@@ -54,4 +61,18 @@ public class UserController {
         model.addAttribute("userDto", new UserDto());
         return "registration";
     }
+
+    @GetMapping("/cabinet")
+    public String getCabinetPage(Model model, Authentication authentication) {
+        CustomUserDetails customUserDetails= (CustomUserDetails) authentication.getPrincipal();
+        Optional<User> maybeUser = userService.readById(customUserDetails.getUserId());
+        if(maybeUser.isPresent()){
+            User user=maybeUser.get();
+            model.addAttribute("user", user);
+            model.addAttribute("rejectedStatements", statementService.readAllRejectedByUser(user));
+        }
+        return "cabinet";
+    }
+
+
 }

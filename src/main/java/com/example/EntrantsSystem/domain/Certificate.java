@@ -11,6 +11,8 @@ public class Certificate {
     private int id;
 
     private String identificationNumber;
+    private double averageGrade;
+
 
     @OneToOne
     private User user;

@@ -18,14 +18,20 @@ public class Statement {
     @JoinColumn(name = "faculty_id")
     private Faculty faculty;
 
-    @Column(name = "summary_grade_of_subjects")
-    private double summaryGradeOfSubjects;
+    @Column(name = "summary_subjects_grade")
+    private int summarySubjectsGrade;
 
     @Column(name = "certificate_grade")
     private double averageGradeOfCertificate;
 
     @Column(name = "final_grade")
     private double finalGrade;
+
+    @Column(name = "confirmed")
+    private boolean confirmed;
+
+    @Column(name = "rejected")
+    private boolean rejected;
 
     public Statement() {
     }
@@ -54,12 +60,12 @@ public class Statement {
         this.faculty = faculty;
     }
 
-    public double getSummaryGradeOfSubjects() {
-        return summaryGradeOfSubjects;
+    public int getSummarySubjectsGrade() {
+        return summarySubjectsGrade;
     }
 
-    public void setSummaryGradeOfSubjects(double summaryGradeOfSubjects) {
-        this.summaryGradeOfSubjects = summaryGradeOfSubjects;
+    public void setSummarySubjectsGrade(int summarySubjectsGrade) {
+        this.summarySubjectsGrade = summarySubjectsGrade;
     }
 
     public double getAverageGradeOfCertificate() {
@@ -76,5 +82,21 @@ public class Statement {
 
     public void setFinalGrade(double finalGrade) {
         this.finalGrade = finalGrade;
+    }
+
+    public boolean isConfirmed() {
+        return confirmed;
+    }
+
+    public void setConfirmed(boolean confirmed) {
+        this.confirmed = confirmed;
+    }
+
+    public boolean isRejected() {
+        return rejected;
+    }
+
+    public void setRejected(boolean rejected) {
+        this.rejected = rejected;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.EntrantsSystem.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,9 +19,14 @@ public class Faculty {
     @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name = "faculty_subject",
             joinColumns = @JoinColumn(name = "faculty_id"), inverseJoinColumns = @JoinColumn(name = "subject_id"))
-    private Set<Subject> requiredSubjects;
+    private Set<Subject> requiredSubjects=new HashSet<Subject>();
 
     public Faculty() {
+    }
+
+    public Faculty(String name, int numberOfStudents) {
+        this.name = name;
+        this.numberOfStudents = numberOfStudents;
     }
 
     public int getId() {
@@ -53,5 +59,9 @@ public class Faculty {
 
     public void setRequiredSubjects(Set<Subject> requiredSubjects) {
         this.requiredSubjects = requiredSubjects;
+    }
+
+    public void addSubject(Subject subject){
+        this.requiredSubjects.add(subject);
     }
 }

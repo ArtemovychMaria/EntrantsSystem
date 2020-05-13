@@ -76,6 +76,10 @@ p{
     color: coral;
 }
 
+li{
+    color: dodgerblue;
+}
+
 .group2{
     width: 350px;
     display: flex;

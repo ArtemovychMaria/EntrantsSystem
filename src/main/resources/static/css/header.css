@@ -49,17 +49,17 @@
 }
 
 .topnav {
-    height: 30px;
+    height: 80px;
     background-color:black;
     overflow: hidden;
     display: flex;
-    justify-content: space-around;
 
 }
 
 .topnav a{
     color: dodgerblue;
     font-size: 17px;
+    margin-left: 5px;
 }
 
 span{
@@ -78,4 +78,9 @@ span{
 
 input[type="submit"]{
     color: dodgerblue;
+}
+
+.now_group{
+    margin-left: 1000px;
+    margin-top:  5px;
 }
