@@ -39,9 +39,15 @@ public class FacultyController {
     }
 
     @PostMapping("/add")
-    public String create(@ModelAttribute FacultyDto facultyDto, HttpServletRequest req){
+    public String create(@ModelAttribute FacultyDto facultyDto, HttpServletRequest req,Model model){
+        Optional<Faculty> maybeFaculty = facultyService.readByName(facultyDto.getName());
+        if(maybeFaculty.isPresent()){
+            model.addAttribute("msg","Faculty alredy exist");
+            return "exceptionPage";
+        }else {
             facultyService.create(facultyDto);
             return "home";
+        }
         }
 
     @PostMapping("/update")
@@ -53,8 +59,27 @@ public class FacultyController {
                          @RequestParam("subjectName3") String  subjectName3){
         Faculty faculty=new Faculty(name,budgetPlan,commercialPlan);
         faculty.setId(id);
-        faculty.setRequiredSubjects(new HashSet<>(Arrays.asList(subjectRepository.findByName(subjectName1),
-                subjectRepository.findByName(subjectName2),subjectRepository.findByName(subjectName3))));
+        Optional<Subject> maybeSubject1 = subjectService.readByName(subjectName1);
+        Optional<Subject> maybeSubject2 = subjectService.readByName(subjectName2);
+        Optional<Subject> maybeSubject3 = subjectService.readByName(subjectName3);
+
+        Set<Subject> subjects=new HashSet<>();
+
+        if(maybeSubject1.isPresent()) {
+            Subject subject1 = maybeSubject1.get();
+            subjects.add(subject1);
+        }
+        if(maybeSubject2.isPresent()) {
+            Subject subject2 = maybeSubject2.get();
+            subjects.add(subject2);
+        }
+
+        if(maybeSubject3.isPresent()){
+            Subject subject3 = maybeSubject3.get();
+            subjects.add(subject3);
+        }
+
+        faculty.setRequiredSubjects(subjects);
         facultyService.save(faculty);
         return "allFaculties";
     }

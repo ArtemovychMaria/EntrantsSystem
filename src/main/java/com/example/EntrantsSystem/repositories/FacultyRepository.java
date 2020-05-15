@@ -15,5 +15,6 @@ import java.util.Optional;
 @Transactional
 public interface FacultyRepository extends JpaRepository<Faculty,Integer> {
 
+    public Optional<Faculty> findByName(String name);
 
 }

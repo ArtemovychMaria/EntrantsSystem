@@ -1,9 +1,9 @@
 <!doctype html>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
-<html lang="en">
+<html>
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+<%--    <meta charset="utf-8">--%>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
@@ -35,6 +35,13 @@
     <!-- Use any element to open the sidenav -->
         <span onclick="openNav()">Menu</span>
 
+    <div class="mr-2">
+        <select id="locates">
+            <option value="en">En</option>
+            <option value="ua">Ua</option>
+        </select>
+    </div>
+
     <security:authorize access="isAuthenticated()">
         <security:authentication property="principal.username" />
         <form action="/logout" method="post">
@@ -64,6 +71,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 <script src="js/header.js"></script>
+<script src="/js/lang.js"></script>
 
 </body>
 </html>

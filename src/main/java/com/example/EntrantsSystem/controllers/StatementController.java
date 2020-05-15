@@ -35,7 +35,9 @@ public class StatementController {
     @PostMapping("/addStatement")
     public String create(@ModelAttribute StatementDto statementDto, Authentication authentication){
             CustomUserDetails customUserDetails= (CustomUserDetails) authentication.getPrincipal();
+            if(!statementService.checkIfExist(statementDto.getFacultyId(),customUserDetails.getUserId())){
             statementService.add(statementDto,customUserDetails.getUserId());
+        }
             return "home";
         }
 

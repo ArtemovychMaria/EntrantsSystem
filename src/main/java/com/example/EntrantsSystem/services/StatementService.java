@@ -76,4 +76,8 @@ public class StatementService {
     public void updateRejectedById(boolean rejected, int statementId){
         statementRepository.updateRejectedById(rejected,statementId);
     }
+
+    public boolean checkIfExist(int facultyId,int userId){
+        return statementRepository.checkIfExist(facultyId,userId);
+    }
 }

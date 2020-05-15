@@ -19,25 +19,35 @@ public class FacultyService {
     private static final Logger Log= LoggerFactory.getLogger(FacultyService.class);
 
     private FacultyRepository facultyRepository;
-    private SubjectRepository subjectRepository;
+    private SubjectService subjectService;
 
     @Autowired
-    public FacultyService(FacultyRepository facultyRepository, SubjectRepository subjectRepository) {
+    public FacultyService(FacultyRepository facultyRepository, SubjectService subjectService) {
         this.facultyRepository = facultyRepository;
-        this.subjectRepository = subjectRepository;
+        this.subjectService = subjectService;
     }
 
     public void create(FacultyDto facultyDto){
         Faculty faculty=new Faculty(facultyDto.getName(),facultyDto.getBudgetPlan(),facultyDto.getCommercialPlan());
-        Subject subject1=subjectRepository.findByName(facultyDto.getSubjectName1());
-        Subject subject2=subjectRepository.findByName(facultyDto.getSubjectName2());
-        Subject subject3=subjectRepository.findByName(facultyDto.getSubjectName3());
-        subject1.addFaculty(faculty);
-        subject2.addFaculty(faculty);
-        subject3.addFaculty(faculty);
-        faculty.addSubject(subject1);
-        faculty.addSubject(subject2);
-        faculty.addSubject(subject3);
+        Optional<Subject> byName1 = subjectService.readByName(facultyDto.getSubjectName1());
+        Optional<Subject> byName2 = subjectService.readByName(facultyDto.getSubjectName2());
+        Optional<Subject> byName3 = subjectService.readByName(facultyDto.getSubjectName3());
+        if(byName1.isPresent()){
+            Subject subject1 = byName1.get();
+            subject1.addFaculty(faculty);
+            faculty.addSubject(subject1);
+        }
+        if(byName2.isPresent()){
+            Subject subject2 = byName2.get();
+            subject2.addFaculty(faculty);
+            faculty.addSubject(subject2);
+        }
+        if(byName3.isPresent()){
+            Subject subject3 = byName3.get();
+            subject3.addFaculty(faculty);
+            faculty.addSubject(subject3);
+        }
+
         facultyRepository.save(faculty);
     }
 
@@ -56,5 +66,9 @@ public class FacultyService {
 
     public Optional<Faculty> readById(int id) {
         return facultyRepository.findById(id);
+    }
+
+    public Optional<Faculty> readByName(String name) {
+        return facultyRepository.findByName(name);
     }
 }
