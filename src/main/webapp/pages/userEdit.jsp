@@ -18,45 +18,46 @@
 </head>
 <body>
 
-<form:form name="registerForm" modelAttribute="userDto" action="/create" method="post">
+<form name="registerForm" action="/updateUser" method="post">
 
     <h3>Sign Up</h3>
 
 <%--    <div class="main">--%>
 <%--    <div class="wraper">--%>
 
-    <img src="https://omegamma.com.au/wp-content/uploads/2017/04/default-image.jpg" id="user-photo"
+    <img src="/user-photo-files/download/${user.photoId}" id="user-photo"
          width="200px">
+    <input type="hidden" value="${user.id}" class="form-control" id="id" name="id"/>
 
     <div class="group">
         <label for="photo-file">Download your photo</label>
         <input id="photo-file" type="file" />
     </div>
 
-    <form:input type="hidden" value="" class="form-control" id="photo-id" name="photoId" path="photoId"/>
+    <input type="hidden" value="" class="form-control" id="photo-id" name="photoId"/>
 
     <div class="group">
-        <form:label for="username" path="username">Username:</form:label>
-        <form:input class="form-control" type="text" path="username" id="username" name="username" placeholder="Username"/>
-        <form:errors path="username"/>
+        <label for="username">Username:</label>
+        <input class="form-control" type="text" value="${user.username}" id="username" name="username" placeholder="Username"/>
+<%--        <form:errors path="username"/>--%>
     </div>
 
     <div class="group">
-        <form:label for="firstName" path="firstName">Name:</form:label>
-        <form:input class="form-control" type="text" path="firstName" id="firstName" name="firstName" placeholder="First name"/>
-        <form:errors path="firstName"/>
+        <label for="firstName">Name:</label>
+        <input class="form-control" type="text" value="${user.firstName}" id="firstName" name="firstName" placeholder="First name"/>
+<%--        <form:errors path="firstName"/>--%>
     </div>
 
     <div class="group">
-        <form:label for="lastName" path="lastName">Surame:</form:label>
-    <form:input class="form-control" type="text" path="lastName" id="lastName" name="lastName" placeholder="Last name"/>
-        <form:errors path="lastName"/>
+        <label for="lastName">Surame:</label>
+    <input class="form-control" type="text" value="${user.lastName}" id="lastName" name="lastName" placeholder="Last name"/>
+<%--        <form:errors path="lastName"/>--%>
     </div>
 
     <div class="group">
-        <form:label for="age" path="age">Age:</form:label>
-    <form:input class="form-control" type="text" path="age" id="age" name="age" placeholder="Age"/>
-        <form:errors path="age"/>
+        <label for="age">Age:</label>
+    <input class="form-control" type="text" value="${user.age}" id="age" name="age" placeholder="Age"/>
+<%--        <form:errors path="age"/>--%>
     </div>
 
     <div class="group">
@@ -73,17 +74,17 @@
     </div>
 <%--    </div>--%>
 <%--    <div class="wraper">--%>
-    <div class="group">
-        <form:label for="email" path="email">Email:</form:label>
-    <form:input type="email" path="email" id="email" class="form-control" name="email" placeholder="Email"/>
-        <form:errors path="email"/>
-    </div>
+<%--    <div class="group">--%>
+<%--        <label for="email" path="email">Email:</label>--%>
+<%--    <input type="email" path="email" id="email" class="form-control" name="email" placeholder="Email"/>--%>
+<%--        <form:errors path="email"/>--%>
+<%--    </div>--%>
 
-    <div class="group">
-        <form:label  for="password" path="password">Password:</form:label>
-    <form:input type="password" path="password" id="password" class="form-control" name="password" placeholder="Password"/>
-        <form:errors path="password"/>
-    </div>
+<%--    <div class="group">--%>
+<%--        <form:label  for="password" path="password">Password:</form:label>--%>
+<%--    <form:input type="password" path="password" id="password" class="form-control" name="password" placeholder="Password"/>--%>
+<%--        <form:errors path="password"/>--%>
+<%--    </div>--%>
 <%--    </div>--%>
 <%--    </div>--%>
 
@@ -98,7 +99,7 @@
     <input type="submit" value="Sign Up" class="form-control">
     </div>
 
-</form:form>
+</form>
 
 
 <!-- Optional JavaScript -->

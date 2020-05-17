@@ -17,7 +17,7 @@ public class UserService {
 
     private static final Logger Log= LoggerFactory.getLogger(UserService.class);
 
-    private static final Set<UserRole> DEFAULT_USER_ROLES = Collections.singleton(UserRole.ROLE_ADMIN);
+    private static final Set<UserRole> DEFAULT_USER_ROLES = Collections.singleton(UserRole.ROLE_USER);
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
     private final EmailSendingService emailSendingService;
@@ -45,6 +45,11 @@ public class UserService {
         UUID uuid = UUID.randomUUID();
         user.setVerifyEmailHash(uuid.toString());
 
+        String photoId = userDto.getPhotoId();
+        if(!photoId.isEmpty()) {
+            user.setPhotoId(photoId);
+        }
+
         userRepository.saveAndFlush(user);
 
         emailSendingService.sendVerificationEmail(userDto.getEmail(), uuid.toString());
@@ -57,5 +62,9 @@ public class UserService {
 
     public Optional<User> readById(int id){
         return userRepository.findById(id);
+    }
+
+    public void save(User user){
+        userRepository.save(user);
     }
 }

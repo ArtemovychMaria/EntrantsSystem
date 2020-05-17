@@ -14,13 +14,45 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <title>Home</title>
-    <link href="css/app.css" rel="stylesheet" type="text/css">
+<%--    <link href="css/app.css" rel="stylesheet" type="text/css">--%>
 </head>
 <body>
 
 <jsp:include page="header.jsp"/>
 
 <h3><spring:message code="welcome"/></h3>
+
+<div style="width: 1000px;height: 600px;margin: auto">
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img class="d-block w-100"
+                 src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/02/20143755/Event-Planning-Education.jpg" alt="First slide">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="https://lexinform.com.ua/wp-content/uploads/2018/09/education-students-people-k-min.jpg" alt="Second slide">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="https://www.ctvnews.ca/polopoly_fs/1.1868116.1402695760!/httpImage/image.jpg_gen/derivatives/landscape_1020/image.jpg" alt="Third slide">
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+</div>
+
+<jsp:include page="footer.jsp"/>
 
 
 

@@ -10,11 +10,31 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <title>Home</title>
-    <link href="css/app.css" rel="stylesheet" type="text/css">
+    <link href="css/cabinet.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
 <jsp:include page="header.jsp"/>
+
+
+<div class="main">
+    <div class="left">
+            <img src="/user-photo-files/download/${user.photoId}">
+    </div>
+    <div class="right">
+        <div class="userInfo">
+            <table>
+                <tr><td class="name"><i>${user.firstName} ${user.lastName}</i></td>
+                    <td><a href="/editUser?userId=${user.id}" class="btn btn-primary">edit</a></td>
+                </tr>
+                <tr><td class="one">Age:</td><td class="two">${user.age}</td></tr>
+                <tr><td class="one">Email:</td><td class="two">${user.email}</td></tr>
+                <tr><td class="one">Gender:</td><td class="two">${user.gender}</td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+
 
 
 <h4>My rejected applications</h4>

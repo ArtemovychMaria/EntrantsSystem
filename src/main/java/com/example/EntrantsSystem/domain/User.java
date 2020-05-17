@@ -27,6 +27,8 @@ public class User {
     private String password;
     private boolean isEmailVerified;
     private String verifyEmailHash;
+    @Column(name = "photo_id")
+    String photoId;
 
     @Enumerated(EnumType.ORDINAL)
     @ElementCollection(targetClass = UserRole.class,fetch = FetchType.EAGER)
@@ -141,5 +143,13 @@ public class User {
 
     public void setRoles(Set<UserRole> roles) {
         this.roles = roles;
+    }
+
+    public String getPhotoId() {
+        return photoId;
+    }
+
+    public void setPhotoId(String photoId) {
+        this.photoId = photoId;
     }
 }
