@@ -9,18 +9,27 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <title>Home</title>
-    <link href="css/app.css" rel="stylesheet" type="text/css">
+    <link href="css/exceptionPage.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h3>${msg}</h3>
 
-<form action="/logout" method="post">
+<jsp:include page="header.jsp"/>
 
-    <input type="submit" value="Log Out"/>
-        <input type="hidden" name="${_csrf.parameterName}"
-               value="${_csrf.token}"/>
+<div class="wrapper">
+    <h3>${msg}</h3>
+</div>
 
-</form>
+
+<%--<form action="/logout" method="post">--%>
+
+<%--    <input type="submit" value="Log Out"/>--%>
+<%--        <input type="hidden" name="${_csrf.parameterName}"--%>
+<%--               value="${_csrf.token}"/>--%>
+
+<%--</form>--%>
+
+
+<jsp:include page="footer.jsp"/>
 
 
 

@@ -17,7 +17,7 @@
 
 <jsp:include page="header.jsp"/>
 
-<form action="/update" method="post">
+<form class="wrap" action="/update" method="post">
 
     <h3>Edit faculty</h3>
 
@@ -84,6 +84,9 @@
     </div>
 
 </form>
+
+
+<jsp:include page="footer.jsp"/>
 
 
 

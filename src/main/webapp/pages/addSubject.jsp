@@ -17,7 +17,8 @@
 
 <jsp:include page="header.jsp"/>
 
-<form action="/addSubject" method="post">
+<%--<div class="wrap">--%>
+<form class="wrap" action="/addSubject" method="post">
 
     <h3>Add subject</h3>
 
@@ -36,6 +37,9 @@
     </div>
 
 </form>
+<%--</div>--%>
+
+<jsp:include page="footer.jsp"/>
 
 
 

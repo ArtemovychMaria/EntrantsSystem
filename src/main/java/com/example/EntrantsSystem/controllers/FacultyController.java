@@ -107,7 +107,9 @@ public class FacultyController {
         return "editFaculty";
     }
 
-
-
-
+    @GetMapping("/delete")
+    public String delete(@RequestParam(value = "id") int facultyId){
+        facultyService.delete(facultyId);
+        return "redirect:/allFaculties";
+    }
 }

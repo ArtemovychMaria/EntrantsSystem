@@ -4,7 +4,6 @@ import com.example.EntrantsSystem.domain.Faculty;
 import com.example.EntrantsSystem.domain.Subject;
 import com.example.EntrantsSystem.dto.FacultyDto;
 import com.example.EntrantsSystem.repositories.FacultyRepository;
-import com.example.EntrantsSystem.repositories.SubjectRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +19,14 @@ public class FacultyService {
 
     private FacultyRepository facultyRepository;
     private SubjectService subjectService;
+    private StatementService statementService;
 
     @Autowired
-    public FacultyService(FacultyRepository facultyRepository, SubjectService subjectService) {
+    public FacultyService(FacultyRepository facultyRepository, SubjectService subjectService,
+                          StatementService statementService) {
         this.facultyRepository = facultyRepository;
         this.subjectService = subjectService;
+        this.statementService = statementService;
     }
 
     public void create(FacultyDto facultyDto){
@@ -70,5 +72,10 @@ public class FacultyService {
 
     public Optional<Faculty> readByName(String name) {
         return facultyRepository.findByName(name);
+    }
+
+    public void delete(int facultyId){
+        statementService.deleteByFacultyId(facultyId);
+        facultyRepository.deleteById(facultyId);
     }
 }

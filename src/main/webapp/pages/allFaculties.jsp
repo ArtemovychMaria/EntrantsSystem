@@ -25,6 +25,9 @@
         <security:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
         <th scope="col">Action</th>
         </security:authorize>
+        <security:authorize access="hasAnyRole('ROLE_ADMIN')">
+            <th scope="col">Delete</th>
+        </security:authorize>
         <th scope="col">Statements</th>
     </tr>
     </thead>
@@ -41,11 +44,17 @@
         <security:authorize access="hasRole('ROLE_USER')">
         <td><a href="/apply?id=${faculty.id}">apply</a></td>
         </security:authorize>
+        <security:authorize access="hasRole('ROLE_ADMIN')">
+            <td><a href="/delete?id=${faculty.id}">delete</a></td>
+        </security:authorize>
         <td><a href="/show?id=${faculty.id}">statements</a></td>
     </tr>
     </c:forEach>
     </tbody>
 </table>
+
+
+<jsp:include page="footer.jsp"/>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

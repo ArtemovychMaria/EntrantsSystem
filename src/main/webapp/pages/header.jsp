@@ -33,9 +33,9 @@
 
 <div class="topnav">
     <!-- Use any element to open the sidenav -->
-        <span onclick="openNav()">Menu</span>
+        <span class="top" onclick="openNav()">Menu</span>
 
-    <div class="mr-2">
+    <div class="language">
         <select id="locates">
             <option value="en">En</option>
             <option value="ua">Ua</option>
@@ -43,19 +43,23 @@
     </div>
 
     <security:authorize access="isAuthenticated()">
-        <security:authentication property="principal.username" />
+        <div class="username">
+            <security:authentication property="principal.username" />
+        </div>
+        <div class="exit">
         <form action="/logout" method="post">
-            <input type="submit" class="btn btn-outline-success ml-2 my-2 my-sm-0" value="Log Out"/>
+            <input type="submit" class="btn btn-outline-primary my-2 my-sm-0" value="Log Out"/>
             <input type="hidden" name="${_csrf.parameterName}"
                    value="${_csrf.token}"/>
         </form>
+        </div>
     </security:authorize>
 
 
     <security:authorize access="!isAuthenticated()">
         <div class="now_group">
-        <a href="/login">Log In</a>
-        <a href="/registration">Sign Up</a>
+        <a href="/login" class="btn btn-outline-primary">Log In</a>
+        <a href="/registration" class="btn btn-outline-primary">Sign Up</a>
         </div>
     </security:authorize>
 

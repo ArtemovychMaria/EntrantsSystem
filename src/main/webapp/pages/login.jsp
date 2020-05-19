@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<form action="/security_check" onsubmit="return validateForm()" method="post">
+<form class="wrap" action="/security_check" onsubmit="return validateForm()" method="post">
 
     <h3>Sign In</h3>
 

@@ -20,7 +20,7 @@
 
 <jsp:include page="header.jsp"/>
 
-<h3><spring:message code="welcome"/></h3>
+<h3 style="text-align: center;color: dodgerblue"><spring:message code="welcome"/></h3>
 
 <div style="width: 1000px;height: 600px;margin: auto">
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">

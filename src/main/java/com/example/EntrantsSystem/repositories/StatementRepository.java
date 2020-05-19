@@ -33,4 +33,6 @@ public interface StatementRepository extends JpaRepository<Statement,Integer> {
     @Query("select (count(s) > 0) from Statement s where s.faculty.id=:facultyId " +
             "and s.user.id=:userId")
     public boolean checkIfExist(@Param("facultyId") int facultyId,@Param("userId") int userId);
+
+    public void deleteByFacultyId(int facultyId);
 }

@@ -17,7 +17,7 @@
 
 <jsp:include page="header.jsp"/>
 
-<form action="/add" method="post">
+<form class="wrap" action="/add" method="post">
 
     <h3>Add faculty</h3>
 
@@ -37,7 +37,7 @@
     </div>
 
     <div class="group">
-        <label for="subjectName1">First required subject name:</label>
+        <label for="subjectName1">First required subject name:</label><br>
         <select name="subjectName1" id="subjectName1">
             <c:forEach var="subject" items="${subjects}">
             <option value="${subject.name}">${subject.name}</option>
@@ -46,7 +46,7 @@
     </div>
 
     <div class="group">
-        <label for="subjectName2">Second required subject name:</label>
+        <label for="subjectName2">Second required subject name:</label><br>
         <select name="subjectName2" id="subjectName2">
             <c:forEach var="subject" items="${subjects}">
                 <option value="${subject.name}">${subject.name}</option>
@@ -55,7 +55,7 @@
     </div>
 
     <div class="group">
-        <label for="subjectName3">Third required subject name:</label>
+        <label for="subjectName3">Third required subject name:</label><br>
         <select name="subjectName3" id="subjectName3">
             <c:forEach var="subject" items="${subjects}">
                 <option value="${subject.name}">${subject.name}</option>
@@ -72,6 +72,9 @@
     </div>
 
 </form>
+
+
+<jsp:include page="footer.jsp"/>
 
 
 

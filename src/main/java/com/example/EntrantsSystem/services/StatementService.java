@@ -80,4 +80,9 @@ public class StatementService {
     public boolean checkIfExist(int facultyId,int userId){
         return statementRepository.checkIfExist(facultyId,userId);
     }
+
+    public void deleteByFacultyId(int facultyId){
+        statementRepository.deleteByFacultyId(facultyId);
+    }
+
 }

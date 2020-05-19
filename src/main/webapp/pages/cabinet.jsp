@@ -32,15 +32,17 @@
                 <tr><td class="one">Gender:</td><td class="two">${user.gender}</td></tr>
             </table>
         </div>
+        <div class="applications">
+            <h4>My rejected applications</h4>
+            <c:forEach var="statement" items="${rejectedStatements}">
+                <p>You have rejected application to faculty ${statement.faculty.name}</p>
+            </c:forEach>
+        </div>
     </div>
 </div>
 
 
-
-<h4>My rejected applications</h4>
-<c:forEach var="statement" items="${rejectedStatements}">
-<p>You have rejected application to faculty ${statement.faculty.name}</p>
-</c:forEach>
+<jsp:include page="footer.jsp"/>
 
 
 <!-- Optional JavaScript -->
