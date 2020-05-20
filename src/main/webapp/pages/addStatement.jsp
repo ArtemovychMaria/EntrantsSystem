@@ -17,7 +17,7 @@
 
 <jsp:include page="header.jsp"/>
 
-<form class="wrap" action="/addStatement" onsubmit=" return validateForm()" method="post">
+<form class="wrap" style="height: 570px" action="/addStatement" onsubmit=" return validateForm()" method="post">
 
     <h3>Add statement</h3>
 

@@ -85,4 +85,7 @@ public class StatementService {
         statementRepository.deleteByFacultyId(facultyId);
     }
 
+    public void deleteStatement(int facultyId,int userId) {
+        statementRepository.deleteByFacultyIdAndUserId(facultyId,userId);
+    }
 }

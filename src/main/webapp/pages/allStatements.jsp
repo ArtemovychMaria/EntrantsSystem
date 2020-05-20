@@ -30,26 +30,28 @@
     </tr>
     </thead>
     <tbody>
-    <%
-        int i=0;
-    %>
-    <c:forEach var="statement" items="${statements}">
+<%--    <%--%>
+<%--        int i=0;--%>
+<%--    %>--%>
+    <c:forEach var="statement" items="${statements}" varStatus="loop">
     <tr>
-        <th scope="row"><%=++i %></th>
+        <c:set var="rating" value="${loop.index + 1}"/>
+        <th scope="row">${rating}</th>
         <td>${statement.user.firstName}</td>
         <td>${statement.user.lastName}</td>
         <td>${statement.summarySubjectsGrade}</td>
         <td>${statement.averageGradeOfCertificate}</td>
         <td>${statement.finalGrade}</td>
-        <c:set var="j" value="<%=i%>"/>
+        <c:set var="budgetSeats" value="${statement.faculty.budgetPlan}"/>
+        <c:set var="commercialSeats" value="${statement.faculty.commercialPlan}"/>
         <c:choose>
-            <c:when test="${j<statement.faculty.budgetPlan}">
+            <c:when test="${rating<=budgetSeats}">
                 <td>+</td>
             </c:when>
-            <c:when test="${j>statement.faculty.budgetPlan && j<statement.faculty.commercialPlan}">
+            <c:when test="${rating>budgetSeats && rating<=(budgetSeats+commercialSeats)}">
                 <td>$</td>
             </c:when>
-            <c:when test="${j>statement.faculty.commercialPlan}">
+            <c:when test="${rating>(budgetSeats+commercialSeats)}">
                 <td>-</td>
             </c:when>
         </c:choose>

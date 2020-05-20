@@ -35,4 +35,6 @@ public interface StatementRepository extends JpaRepository<Statement,Integer> {
     public boolean checkIfExist(@Param("facultyId") int facultyId,@Param("userId") int userId);
 
     public void deleteByFacultyId(int facultyId);
+
+    public void deleteByFacultyIdAndUserId(int facultyId,int userId);
 }

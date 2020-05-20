@@ -18,7 +18,7 @@ public class Faculty {
     @Column(name = "commercial_plan")
     int commercialPlan;
 
-    @ManyToMany(cascade=CascadeType.ALL)
+    @ManyToMany(cascade=CascadeType.PERSIST)
     @JoinTable(name = "faculty_subject",
             joinColumns = @JoinColumn(name = "faculty_id"), inverseJoinColumns = @JoinColumn(name = "subject_id"))
     private Set<Subject> requiredSubjects=new HashSet<Subject>();

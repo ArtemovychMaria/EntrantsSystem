@@ -25,6 +25,9 @@
         <security:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
         <th scope="col">Action</th>
         </security:authorize>
+        <security:authorize access="hasAnyRole('ROLE_USER')">
+            <th scope="col">Reject</th>
+        </security:authorize>
         <security:authorize access="hasAnyRole('ROLE_ADMIN')">
             <th scope="col">Delete</th>
         </security:authorize>
@@ -43,6 +46,9 @@
         </security:authorize>
         <security:authorize access="hasRole('ROLE_USER')">
         <td><a href="/apply?id=${faculty.id}">apply</a></td>
+        </security:authorize>
+        <security:authorize access="hasRole('ROLE_USER')">
+            <td><a href="/cancel?id=${faculty.id}">reject</a></td>
         </security:authorize>
         <security:authorize access="hasRole('ROLE_ADMIN')">
             <td><a href="/delete?id=${faculty.id}">delete</a></td>

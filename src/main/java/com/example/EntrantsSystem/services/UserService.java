@@ -17,7 +17,7 @@ public class UserService {
 
     private static final Logger Log= LoggerFactory.getLogger(UserService.class);
 
-    private static final Set<UserRole> DEFAULT_USER_ROLES = Collections.singleton(UserRole.ROLE_ADMIN);
+    private static final Set<UserRole> DEFAULT_USER_ROLES = Collections.singleton(UserRole.ROLE_USER);
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
     private final EmailSendingService emailSendingService;

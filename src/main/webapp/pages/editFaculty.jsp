@@ -17,7 +17,7 @@
 
 <jsp:include page="header.jsp"/>
 
-<form class="wrap" action="/update" method="post">
+<form class="wrap" style="height: 700px" action="/update" method="post">
 
     <h3>Edit faculty</h3>
 
