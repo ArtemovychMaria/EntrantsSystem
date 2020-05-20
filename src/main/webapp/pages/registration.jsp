@@ -18,7 +18,9 @@
 </head>
 <body>
 
-<form:form name="registerForm" cssClass="wrap" modelAttribute="userDto" action="/create" method="post">
+<jsp:include page="header.jsp"/>
+
+<form:form name="registerForm" cssClass="wrap" cssStyle="height: 850px" modelAttribute="userDto" action="/create" method="post">
 
     <h3>Sign Up</h3>
 
@@ -99,6 +101,8 @@
     </div>
 
 </form:form>
+
+<jsp:include page="footer.jsp"/>
 
 
 <!-- Optional JavaScript -->

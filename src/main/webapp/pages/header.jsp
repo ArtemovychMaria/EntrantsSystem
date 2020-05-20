@@ -1,5 +1,6 @@
 <!doctype html>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
     <!-- Required meta tags -->
@@ -16,17 +17,17 @@
 <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <security:authorize access="hasRole('ROLE_ADMIN')">
-        <a href="/new">Add new faculty</a>
+        <a href="/new"><spring:message code="add_faculty"/></a>
     </security:authorize>
     <security:authorize access="hasRole('ROLE_ADMIN')">
-        <a href="/applications">Confirming applications</a>
+        <a href="/applications"><spring:message code="confirm"/></a>
     </security:authorize>
     <security:authorize access="hasRole('ROLE_ADMIN')">
-        <a href="/newSubject">Add new subject</a>
+        <a href="/newSubject"><spring:message code="add_subject"/></a>
     </security:authorize>
-        <a href="/allFaculties">Faculties</a>
+        <a href="/allFaculties"><spring:message code="faculties"/></a>
     <security:authorize access="hasRole('ROLE_USER')">
-        <a href="/cabinet">Cabinet</a>
+        <a href="/cabinet"><spring:message code="cabinet"/></a>
     </security:authorize>
     </div>
 
