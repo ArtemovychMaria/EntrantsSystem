@@ -1,0 +1,55 @@
+.main{
+    width: 600px;
+    height: 400px;
+    margin: auto;
+    border: 3px solid #2948ff;
+    border-radius: 25px;
+    display: flex;
+}
+
+.left{
+    width: 40%;
+    height: 100%;
+    background-image: linear-gradient(to right,#36d1dc,#5d86e5);
+    border-radius: 25px;
+}
+
+img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 15px 45px;
+}
+
+.name{
+    color:blue;
+    font-size: 25px;
+    font-family: Cambria;
+    text-align: center;
+}
+
+.userInfo{
+    width: 300px;
+    height: 150px;
+    margin: auto;
+}
+
+/*tr{*/
+/*    margin: 10px;*/
+/*}*/
+
+.one{
+    color: #5d86e5;
+}
+
+.one,.two{
+    font-size: 20px;
+}
+
+h4{
+    color: #5d86e5;
+}
+
+.applications{
+    /*background-color: firebrick;*/
+}

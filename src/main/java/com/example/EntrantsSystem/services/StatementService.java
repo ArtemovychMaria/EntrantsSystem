@@ -5,6 +5,8 @@ import com.example.EntrantsSystem.domain.Statement;
 import com.example.EntrantsSystem.domain.User;
 import com.example.EntrantsSystem.dto.StatementDto;
 import com.example.EntrantsSystem.repositories.StatementRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,8 @@ import java.util.Optional;
 
 @Service
 public class StatementService {
+
+    private static final Logger Log= LoggerFactory.getLogger(StatementService.class);
 
     private final EntityManager entityManager;
     private final StatementRepository statementRepository;
@@ -42,8 +46,9 @@ public class StatementService {
         statementRepository.save(statement);
     }
 
-    public List<Statement> readAllRejectedByUser(User user){
-        return statementRepository.findByUserAndRejectedTrue(user);
+    public List<Statement> readAllRejectedByUser(int userId){
+        Log.info("Getting all rejected user`s statements");
+        return statementRepository.findByUserIdAndRejectedTrue(userId);
     }
 
     public List<Statement> readAllUnconfirmed(){
@@ -51,6 +56,7 @@ public class StatementService {
     }
 
     public Optional<Statement> readById(int statementId){
+        Log.info("Getting statement by id");
         return statementRepository.findById(statementId);
     }
 
@@ -58,7 +64,28 @@ public class StatementService {
         statementRepository.save(statement);
     }
 
-    public List<Statement> showAllConfirmedByFaculty(Faculty faculty){
-        return statementRepository.findByFacultyAndConfirmedTrueOrderByFinalGradeDesc(faculty);
+    public List<Statement> showAllConfirmedByFaculty(int facultyId){
+        Log.info("Showing all confirmed statements");
+        return statementRepository.findByFacultyIdAndConfirmedTrueOrderByFinalGradeDesc(facultyId);
+    }
+
+    public void updateConfirmedById(boolean confirmed, int statementId){
+        statementRepository.updateConfirmedById(confirmed,statementId);
+    }
+
+    public void updateRejectedById(boolean rejected, int statementId){
+        statementRepository.updateRejectedById(rejected,statementId);
+    }
+
+    public boolean checkIfExist(int facultyId,int userId){
+        return statementRepository.checkIfExist(facultyId,userId);
+    }
+
+    public void deleteByFacultyId(int facultyId){
+        statementRepository.deleteByFacultyId(facultyId);
+    }
+
+    public void deleteStatement(int facultyId,int userId) {
+        statementRepository.deleteByFacultyIdAndUserId(facultyId,userId);
     }
 }

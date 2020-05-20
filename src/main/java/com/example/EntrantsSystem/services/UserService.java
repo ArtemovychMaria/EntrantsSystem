@@ -4,6 +4,8 @@ import com.example.EntrantsSystem.domain.User;
 import com.example.EntrantsSystem.domain.UserRole;
 import com.example.EntrantsSystem.dto.UserDto;
 import com.example.EntrantsSystem.repositories.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,8 @@ import java.util.*;
 
 @Service
 public class UserService {
+
+    private static final Logger Log= LoggerFactory.getLogger(UserService.class);
 
     private static final Set<UserRole> DEFAULT_USER_ROLES = Collections.singleton(UserRole.ROLE_USER);
     private UserRepository userRepository;
@@ -27,6 +31,7 @@ public class UserService {
     }
 
     public List<User> readAll(){
+        Log.info("Getting all users");
         return userRepository.findAll();
     }
 
@@ -40,6 +45,11 @@ public class UserService {
         UUID uuid = UUID.randomUUID();
         user.setVerifyEmailHash(uuid.toString());
 
+        String photoId = userDto.getPhotoId();
+        if(!photoId.isEmpty()) {
+            user.setPhotoId(photoId);
+        }
+
         userRepository.saveAndFlush(user);
 
         emailSendingService.sendVerificationEmail(userDto.getEmail(), uuid.toString());
@@ -52,5 +62,9 @@ public class UserService {
 
     public Optional<User> readById(int id){
         return userRepository.findById(id);
+    }
+
+    public void save(User user){
+        userRepository.save(user);
     }
 }

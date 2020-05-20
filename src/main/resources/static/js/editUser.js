@@ -1,38 +1,34 @@
-function validateForm(){
+function validateForm() {
+
     var username = document.getElementById("username");
     var firstName = document.getElementById("firstName");
     var lastName = document.getElementById("lastName");
     var age = document.getElementById("age");
-    var gender = document.getElementById("gender");
-    var email = document.getElementById("email");
-    var password = document.getElementById("password");
-
-    var at=email.value.indexOf('@');
-    var dot=email.value.indexOf('.');
-
 
     if(username.value == ""){
         username.style.border="1px solid red";
+        document.getElementById("fusername").innerHTML='*field is required';
     }
 
     if(firstName.value == ""){
         firstName.style.border="1px solid red";
+        document.getElementById("fFirstName").innerHTML='*field is required';
     }
 
     if(lastName.value == ""){
         lastName.style.border="1px solid red";
+        document.getElementById("fLastName").innerHTML='*field is required';
     }
 
     if(age.value == ""){
         age.style.border="1px solid red";
+        document.getElementById("fage").innerHTML='*field is required';
     }
 
-    if(email.value == ""){
-        email.style.border="1px solid red";
-    }
-
-    if(password.value == "") {
-        password.style.border = "1px solid red";
-    }
+    if(username.value == ""|| firstName.value == "" || lastName.value == "" || age.value == ""){
+        return false;
+    }else {
         return true;
+    }
+
 }

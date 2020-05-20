@@ -1,6 +1,7 @@
 package com.example.EntrantsSystem.controllers;
 
 import com.example.EntrantsSystem.domain.User;
+import com.example.EntrantsSystem.dto.EditUserDto;
 import com.example.EntrantsSystem.dto.UserDto;
 import com.example.EntrantsSystem.security.CustomUserDetails;
 import com.example.EntrantsSystem.services.StatementService;
@@ -69,10 +70,30 @@ public class UserController {
         if(maybeUser.isPresent()){
             User user=maybeUser.get();
             model.addAttribute("user", user);
-            model.addAttribute("rejectedStatements", statementService.readAllRejectedByUser(user));
+            model.addAttribute("rejectedStatements", statementService.readAllRejectedByUser(customUserDetails.getUserId()));
         }
         return "cabinet";
     }
 
+    @GetMapping("/editUser")
+    public String getEditPage(@RequestParam("userId") int userId,Model model){
+        model.addAttribute("user",userService.readById(userId).get());
+        return "userEdit";
+    }
 
+    @PostMapping("/updateUser")
+    public String update(@ModelAttribute EditUserDto editUserDto){
+        Optional<User> maybeUser = userService.readById(editUserDto.getId());
+        if(maybeUser.isPresent()){
+            User user=maybeUser.get();
+            user.setUsername(editUserDto.getUsername());
+            user.setFirstName(editUserDto.getFirstName());
+            user.setLastName(editUserDto.getLastName());
+            user.setAge(editUserDto.getAge());
+            user.setGender(editUserDto.getGender());
+            user.setPhotoId(editUserDto.getPhotoId());
+            userService.save(user);
+        }
+        return "redirect:/cabinet";
+    }
 }

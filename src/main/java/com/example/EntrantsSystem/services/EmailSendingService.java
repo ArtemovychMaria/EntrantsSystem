@@ -1,5 +1,7 @@
 package com.example.EntrantsSystem.services;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -8,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EmailSendingService {
+
+    private static final Logger Log= LoggerFactory.getLogger(EmailSendingService.class);
 
     @Autowired
     private JavaMailSender javaMailSender;
@@ -18,6 +22,7 @@ public class EmailSendingService {
     private String verifyLink;
 
     public void sendVerificationEmail(String userEmail, String hash) {
+        Log.info("Sending verification email with hash={}",hash);
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 
         simpleMailMessage.setTo(userEmail);

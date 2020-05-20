@@ -1,9 +1,10 @@
 <!doctype html>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
-<html lang="en">
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<html>
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+<%--    <meta charset="utf-8">--%>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
@@ -16,39 +17,50 @@
 <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <security:authorize access="hasRole('ROLE_ADMIN')">
-        <a href="/new">Add new faculty</a>
+        <a href="/new"><spring:message code="add_faculty"/></a>
     </security:authorize>
     <security:authorize access="hasRole('ROLE_ADMIN')">
-        <a href="/applications">Confirming applications</a>
+        <a href="/applications"><spring:message code="confirm"/></a>
     </security:authorize>
     <security:authorize access="hasRole('ROLE_ADMIN')">
-        <a href="/newSubject">Add new subject</a>
+        <a href="/newSubject"><spring:message code="add_subject"/></a>
     </security:authorize>
-        <a href="/allFaculties">Faculties</a>
+        <a href="/allFaculties"><spring:message code="faculties"/></a>
     <security:authorize access="hasRole('ROLE_USER')">
-        <a href="/cabinet">Cabinet</a>
+        <a href="/cabinet"><spring:message code="cabinet"/></a>
     </security:authorize>
     </div>
 
 
 <div class="topnav">
     <!-- Use any element to open the sidenav -->
-        <span onclick="openNav()">Menu</span>
+        <span class="top" onclick="openNav()">Menu</span>
+
+    <div class="language">
+        <select id="locates">
+            <option value="en">En</option>
+            <option value="ua">Ua</option>
+        </select>
+    </div>
 
     <security:authorize access="isAuthenticated()">
-        <security:authentication property="principal.username" />
+        <div class="username">
+            <security:authentication property="principal.username" />
+        </div>
+        <div class="exit">
         <form action="/logout" method="post">
-            <input type="submit" class="btn btn-outline-success ml-2 my-2 my-sm-0" value="Log Out"/>
+            <input type="submit" class="btn btn-outline-primary my-2 my-sm-0" value="Log Out"/>
             <input type="hidden" name="${_csrf.parameterName}"
                    value="${_csrf.token}"/>
         </form>
+        </div>
     </security:authorize>
 
 
     <security:authorize access="!isAuthenticated()">
         <div class="now_group">
-        <a href="/login">Log In</a>
-        <a href="/registration">Sign Up</a>
+        <a href="/login" class="btn btn-outline-primary">Log In</a>
+        <a href="/registration" class="btn btn-outline-primary">Sign Up</a>
         </div>
     </security:authorize>
 
@@ -64,6 +76,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 <script src="js/header.js"></script>
+<script src="/js/lang.js"></script>
 
 </body>
 </html>

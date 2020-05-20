@@ -13,7 +13,9 @@
 </head>
 <body>
 
-<form action="/security_check" onsubmit="return validateForm()" method="post">
+<jsp:include page="header.jsp"/>
+
+<form class="wrap" action="/security_check" onsubmit="return validateForm()" method="post">
 
     <h3>Sign In</h3>
 
@@ -41,6 +43,8 @@
     </div>
 
 </form>
+
+<jsp:include page="footer.jsp"/>
 
 
 

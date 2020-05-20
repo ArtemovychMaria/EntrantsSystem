@@ -33,26 +33,38 @@ public class StatementController {
     }
 
     @PostMapping("/addStatement")
-    public String create(@ModelAttribute StatementDto statementDto, Authentication authentication){
+    public String create(@ModelAttribute StatementDto statementDto, Authentication authentication,Model model){
             CustomUserDetails customUserDetails= (CustomUserDetails) authentication.getPrincipal();
+            if(!statementService.checkIfExist(statementDto.getFacultyId(),customUserDetails.getUserId())){
             statementService.add(statementDto,customUserDetails.getUserId());
-            return "home";
+            return "redirect:/allFaculties";
+        }else{
+                model.addAttribute("msg","You have already applied to this faculty");
+                return "exceptionPage";
+            }
         }
 
     @GetMapping("/apply")
-    public String getAddStatementPage(@RequestParam(value = "id") int facultyId, HttpServletRequest req) {
-        Optional<Faculty> byId = facultyService.getById(facultyId);
-        if(byId.isPresent()){
-            Faculty faculty=byId.get();
-            Set<Subject> requiredSubjects = faculty.getRequiredSubjects();
-            Subject [] subjects=new Subject[requiredSubjects.size()];
-            requiredSubjects.toArray(subjects);
-            req.setAttribute("faculty",faculty);
-            req.setAttribute("subject1",subjects[0]);
-            req.setAttribute("subject2",subjects[1]);
-            req.setAttribute("subject3",subjects[2]);
+    public String getAddStatementPage(@RequestParam(value = "id") int facultyId, HttpServletRequest req,
+                                      Authentication authentication,Model model) {
+        CustomUserDetails customUserDetails= (CustomUserDetails) authentication.getPrincipal();
+        if(statementService.checkIfExist(facultyId,customUserDetails.getUserId())){
+            model.addAttribute("msg","You have already applied to this faculty");
+            return "exceptionPage";
+        }else {
+            Optional<Faculty> byId = facultyService.getById(facultyId);
+            if (byId.isPresent()) {
+                Faculty faculty = byId.get();
+                Set<Subject> requiredSubjects = faculty.getRequiredSubjects();
+                Subject[] subjects = new Subject[requiredSubjects.size()];
+                requiredSubjects.toArray(subjects);
+                req.setAttribute("faculty", faculty);
+                req.setAttribute("subject1", subjects[0]);
+                req.setAttribute("subject2", subjects[1]);
+                req.setAttribute("subject3", subjects[2]);
+            }
+            return "addStatement";
         }
-        return "addStatement";
     }
 
     @GetMapping("/applications")
@@ -63,35 +75,33 @@ public class StatementController {
 
     @GetMapping("/confirm")
     public String confirm(@RequestParam(value = "id") int statementId){
-        Optional<Statement> maybeStatement = statementService.readById(statementId);
-        if(maybeStatement.isPresent()){
-            Statement statement = maybeStatement.get();
-            statement.setConfirmed(true);
-            statementService.save(statement);
-        }
+        statementService.updateConfirmedById(true,statementId);
         return "home";
     }
 
     @GetMapping("/reject")
     public String reject(@RequestParam(value = "id") int statementId){
-        Optional<Statement> maybeStatement = statementService.readById(statementId);
-        if(maybeStatement.isPresent()){
-            Statement statement = maybeStatement.get();
-            statement.setRejected(true);
-            statementService.save(statement);
-        }
+        statementService.updateRejectedById(true,statementId);
         return "home";
     }
 
     @GetMapping("/show")
     public String showAll(@RequestParam(value = "id") int facultyId,Model model){
-        Optional<Faculty> byId = facultyService.getById(facultyId);
-        if(byId.isPresent()){
-            Faculty faculty = byId.get();
-            model.addAttribute("statements",statementService.showAllConfirmedByFaculty(faculty));
-            model.addAttribute("subjects",faculty.getRequiredSubjects());
-        }
+            model.addAttribute("statements",statementService.showAllConfirmedByFaculty(facultyId));
         return "allStatements";
+    }
+
+    @GetMapping("/cancel")
+    public String reject(@RequestParam(value = "id") int facultyId,Authentication authentication,Model model){
+        CustomUserDetails customUserDetails= (CustomUserDetails) authentication.getPrincipal();
+        int userId=customUserDetails.getUserId();
+        if(statementService.checkIfExist(facultyId,userId)){
+            statementService.deleteStatement(facultyId,userId);
+            return "redirect:/allFaculties";
+        }else{
+            model.addAttribute("msg","You don`t have application to this faculty");
+            return "exceptionPage";
+        }
     }
 
 

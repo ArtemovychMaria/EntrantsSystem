@@ -17,7 +17,8 @@
 
 <jsp:include page="header.jsp"/>
 
-<form action="/addSubject" method="post">
+<%--<div class="wrap">--%>
+<form class="wrap" action="/addSubject" method="post">
 
     <h3>Add subject</h3>
 
@@ -29,12 +30,16 @@
     <div class="group">
         <input type="submit" value="Add" class="form-control">
     </div>
+
     <div>
         <input type="hidden" name="${_csrf.parameterName}"
                value="${_csrf.token}"/>
     </div>
 
 </form>
+<%--</div>--%>
+
+<jsp:include page="footer.jsp"/>
 
 
 

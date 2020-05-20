@@ -17,7 +17,7 @@
 
 <jsp:include page="header.jsp"/>
 
-<form action="/add" method="post">
+<form class="wrap" style="height: 650px" action="/add" method="post">
 
     <h3>Add faculty</h3>
 
@@ -25,13 +25,19 @@
         <label for="name">Name:</label>
         <input class="form-control" type="text" id="name" name="name" placeholder="Name">
     </div>
+
     <div class="group">
-        <label for="numberOfStudents">Number of students:</label>
-        <input type="text" id="numberOfStudents" class="form-control" name="numberOfStudents" placeholder="Number of students">
+        <label for="budgetPlan">Number of students:</label>
+        <input type="number" id="budgetPlan" class="form-control" name="budgetPlan" placeholder="Budget plan">
     </div>
 
     <div class="group">
-        <label for="subjectName1">First required subject name:</label>
+        <label for="commercialPlan">Number of students:</label>
+        <input type="number" id="commercialPlan" class="form-control" name="commercialPlan" placeholder="Commercial plan">
+    </div>
+
+    <div class="group">
+        <label for="subjectName1">First required subject name:</label><br>
         <select name="subjectName1" id="subjectName1">
             <c:forEach var="subject" items="${subjects}">
             <option value="${subject.name}">${subject.name}</option>
@@ -40,7 +46,7 @@
     </div>
 
     <div class="group">
-        <label for="subjectName2">Second required subject name:</label>
+        <label for="subjectName2">Second required subject name:</label><br>
         <select name="subjectName2" id="subjectName2">
             <c:forEach var="subject" items="${subjects}">
                 <option value="${subject.name}">${subject.name}</option>
@@ -49,7 +55,7 @@
     </div>
 
     <div class="group">
-        <label for="subjectName3">Third required subject name:</label>
+        <label for="subjectName3">Third required subject name:</label><br>
         <select name="subjectName3" id="subjectName3">
             <c:forEach var="subject" items="${subjects}">
                 <option value="${subject.name}">${subject.name}</option>
@@ -66,6 +72,9 @@
     </div>
 
 </form>
+
+
+<jsp:include page="footer.jsp"/>
 
 
 

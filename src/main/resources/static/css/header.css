@@ -49,11 +49,11 @@
 }
 
 .topnav {
-    height: 80px;
+    height: 50px;
     background-color:black;
     overflow: hidden;
     display: flex;
-
+    margin-bottom: 50px;
 }
 
 .topnav a{
@@ -62,7 +62,7 @@
     margin-left: 5px;
 }
 
-span{
+.top{
     color:dodgerblue;
     text-align: center;
     padding: 14px 16px;
@@ -81,6 +81,25 @@ input[type="submit"]{
 }
 
 .now_group{
-    margin-left: 1000px;
+    margin-left: 1040px;
     margin-top:  5px;
+}
+
+.exit{
+    position: absolute;
+    left:1200px;
+    top:5px;
+}
+
+.language{
+    position: absolute;
+    left: 1300px;
+    top: 15px;
+}
+
+.username{
+    position: absolute;
+    left: 1145px;
+    top: 15px;
+    color: #4180CB;
 }

@@ -1,6 +1,7 @@
 package com.example.EntrantsSystem.domain;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -27,6 +28,8 @@ public class User {
     private String password;
     private boolean isEmailVerified;
     private String verifyEmailHash;
+    @Column(name = "photo_id")
+    String photoId;
 
     @Enumerated(EnumType.ORDINAL)
     @ElementCollection(targetClass = UserRole.class,fetch = FetchType.EAGER)
@@ -141,5 +144,38 @@ public class User {
 
     public void setRoles(Set<UserRole> roles) {
         this.roles = roles;
+    }
+
+    public String getPhotoId() {
+        return photoId;
+    }
+
+    public void setPhotoId(String photoId) {
+        this.photoId = photoId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id &&
+                age == user.age &&
+                isEmailVerified == user.isEmailVerified &&
+                Objects.equals(username, user.username) &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(gender, user.gender) &&
+                Objects.equals(adress, user.adress) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(verifyEmailHash, user.verifyEmailHash) &&
+                Objects.equals(photoId, user.photoId) &&
+                Objects.equals(roles, user.roles);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, firstName, lastName, age, gender, adress, email, password, isEmailVerified, verifyEmailHash, photoId, roles);
     }
 }

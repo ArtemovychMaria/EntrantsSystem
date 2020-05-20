@@ -13,10 +13,12 @@ public class Faculty {
     @Column(name = "faculty_id")
     private int id;
     String name;
-    @Column(name = "number_of_students")
-    int numberOfStudents;
+    @Column(name = "budget_plan")
+    int budgetPlan;
+    @Column(name = "commercial_plan")
+    int commercialPlan;
 
-    @ManyToMany(cascade=CascadeType.ALL)
+    @ManyToMany(cascade=CascadeType.PERSIST)
     @JoinTable(name = "faculty_subject",
             joinColumns = @JoinColumn(name = "faculty_id"), inverseJoinColumns = @JoinColumn(name = "subject_id"))
     private Set<Subject> requiredSubjects=new HashSet<Subject>();
@@ -24,9 +26,10 @@ public class Faculty {
     public Faculty() {
     }
 
-    public Faculty(String name, int numberOfStudents) {
+    public Faculty(String name, int budgetPlan,int commercialPlan) {
         this.name = name;
-        this.numberOfStudents = numberOfStudents;
+        this.budgetPlan=budgetPlan;
+        this.commercialPlan=commercialPlan;
     }
 
     public int getId() {
@@ -45,12 +48,20 @@ public class Faculty {
         this.name = name;
     }
 
-    public int getNumberOfStudents() {
-        return numberOfStudents;
+    public int getBudgetPlan() {
+        return budgetPlan;
     }
 
-    public void setNumberOfStudents(int numberOfStudents) {
-        this.numberOfStudents = numberOfStudents;
+    public void setBudgetPlan(int budgetPlan) {
+        this.budgetPlan = budgetPlan;
+    }
+
+    public int getCommercialPlan() {
+        return commercialPlan;
+    }
+
+    public void setCommercialPlan(int commercialPlan) {
+        this.commercialPlan = commercialPlan;
     }
 
     public Set<Subject> getRequiredSubjects() {

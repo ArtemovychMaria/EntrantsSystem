@@ -15,6 +15,8 @@
 </head>
 <body>
 
+<jsp:include page="header.jsp"/>
+
 <table class="table table-striped">
     <thead>
     <tr>
@@ -24,22 +26,42 @@
         <th scope="col">Summary subjects grade</th>
         <th scope="col">Certificate grade</th>
         <th scope="col">Final Grade</th>
+        <th scope="col">Accepted</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach var="statement" items="${statements}">
+<%--    <%--%>
+<%--        int i=0;--%>
+<%--    %>--%>
+    <c:forEach var="statement" items="${statements}" varStatus="loop">
     <tr>
-        <th scope="row">${statement.id}</th>
+        <c:set var="rating" value="${loop.index + 1}"/>
+        <th scope="row">${rating}</th>
         <td>${statement.user.firstName}</td>
         <td>${statement.user.lastName}</td>
         <td>${statement.summarySubjectsGrade}</td>
         <td>${statement.averageGradeOfCertificate}</td>
         <td>${statement.finalGrade}</td>
-<%--        <td></td>--%>
+        <c:set var="budgetSeats" value="${statement.faculty.budgetPlan}"/>
+        <c:set var="commercialSeats" value="${statement.faculty.commercialPlan}"/>
+        <c:choose>
+            <c:when test="${rating<=budgetSeats}">
+                <td>+</td>
+            </c:when>
+            <c:when test="${rating>budgetSeats && rating<=(budgetSeats+commercialSeats)}">
+                <td>$</td>
+            </c:when>
+            <c:when test="${rating>(budgetSeats+commercialSeats)}">
+                <td>-</td>
+            </c:when>
+        </c:choose>
     </tr>
     </c:forEach>
     </tbody>
 </table>
+
+
+<jsp:include page="footer.jsp"/>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

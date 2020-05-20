@@ -17,7 +17,7 @@
 
 <jsp:include page="header.jsp"/>
 
-<form action="/update" method="post">
+<form class="wrap" style="height: 700px" action="/update" method="post">
 
     <h3>Edit faculty</h3>
 
@@ -30,8 +30,13 @@
         <input class="form-control" type="text" value="${faculty.name}" id="name" name="name" placeholder="Name">
     </div>
     <div class="group">
-        <label for="numberOfStudents">Number of students:</label>
-        <input type="text" id="numberOfStudents" value="${faculty.numberOfStudents}" class="form-control" name="numberOfStudents" placeholder="Number of students">
+        <label for="budgetPlan">Number of students:</label>
+        <input type="number" id="budgetPlan" value="${faculty.budgetPlan}" class="form-control" name="budgetPlan" placeholder="Budget plan">
+    </div>
+
+    <div class="group">
+        <label for="commercialPlan">Number of students:</label>
+        <input type="number" id="commercialPlan" value="${faculty.commercialPlan}" class="form-control" name="commercialPlan" placeholder="Commercial plan">
     </div>
 
     <div class="group">
@@ -79,6 +84,9 @@
     </div>
 
 </form>
+
+
+<jsp:include page="footer.jsp"/>
 
 
 

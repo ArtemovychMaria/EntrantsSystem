@@ -1,19 +1,21 @@
 package com.example.EntrantsSystem.dto;
 
-
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-
-public class UserDto {
+public class EditUserDto {
+    private int id;
     private String username;
     private String firstName;
     private String lastName;
-    private String age;
+    private int age;
     private String gender;
-    private String email;
-    private String password;
-    private String photoId;
+    String photoId;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -39,11 +41,11 @@ public class UserDto {
         this.lastName = lastName;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
@@ -53,22 +55,6 @@ public class UserDto {
 
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getPhotoId() {
