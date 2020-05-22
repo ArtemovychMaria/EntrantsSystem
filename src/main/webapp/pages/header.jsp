@@ -19,6 +19,12 @@
     <security:authorize access="hasRole('ROLE_ADMIN')">
         <a href="/new"><spring:message code="add_faculty"/></a>
     </security:authorize>
+    <security:authorize access="hasRole('ROLE_USER')">
+        <a href="/createCertificate"><spring:message code="add_certificate"/></a>
+    </security:authorize>
+    <security:authorize access="hasRole('ROLE_USER')">
+        <a href="/createExamMark"><spring:message code="add_exam_mark"/></a>
+    </security:authorize>
     <security:authorize access="hasRole('ROLE_ADMIN')">
         <a href="/applications"><spring:message code="confirm"/></a>
     </security:authorize>

@@ -1,3 +1,4 @@
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
@@ -9,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Add statement</title>
+    <title>New subject</title>
     <link href="css/app.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -17,56 +18,39 @@
 
 <jsp:include page="header.jsp"/>
 
-<form class="wrap" style="height: 570px" action="/addStatement" onsubmit=" return validateForm()" method="post">
+<%--<div class="wrap">--%>
+<form class="wrap" action="/addExamMark" method="post">
 
-    <h3>Add statement</h3>
+    <h3>Add exam mark</h3>
 
     <div class="group">
-        <input type="hidden" id="id" name="facultyId" value="${faculty.id}">
+        <label for="subjectName">Subject name:</label><br>
+        <select name="subjectName" id="subjectName">
+            <c:forEach var="subject" items="${subjects}">
+                <option value="${subject.name}">${subject.name}</option>
+            </c:forEach>
+        </select>
     </div>
 
     <div class="group">
-        <h4>${faculty.name}</h4>
-    </div>
-    
-    <div class="group">
-        <label for="subjectGrade1">${subject1.name}</label>
-        <input type="number" id="subjectGrade1" class="form-control" value="${grade1}" name="subjectGrade1" placeholder="Enter your grade">
-        <span id="sg1"></span>
+        <label for="mark">Mark:</label>
+        <input class="form-control" type="number" id="mark" name="mark" placeholder="Average Grade">
     </div>
 
     <div class="group">
-        <label for="subjectGrade2">${subject2.name}</label>
-        <input type="number" id="subjectGrade2" class="form-control" value="${grade2}" name="subjectGrade2" placeholder="Enter your grade">
-        <span id="sg2"></span>
+        <input type="submit" value="Add" class="form-control">
     </div>
 
-    <div class="group">
-        <label for="subjectGrade3">${subject3.name}</label>
-        <input type="number" id="subjectGrade3" class="form-control" value="${grade3}" name="subjectGrade3" placeholder="Enter your grade">
-        <span id="sg3"></span>
-    </div>
-
-    <div class="group">
-        <label for="certificateGrade">Grade of Certificate</label>
-        <input type="number" step="0.1" id="certificateGrade" class="form-control" value="${certificate.averageGrade}"
-               name="certificateGrade" placeholder="Enter your grade">
-        <span id="cgrade"></span>
-    </div>
-
-    <div class="group">
-        <input type="submit" value="Apply" class="form-control">
-    </div>
     <div>
         <input type="hidden" name="${_csrf.parameterName}"
                value="${_csrf.token}"/>
     </div>
 
 </form>
-
-
+<%--</div>--%>
 
 <jsp:include page="footer.jsp"/>
+
 
 
 <!-- Optional JavaScript -->
@@ -75,7 +59,6 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-<script src="js/addStatement.js"></script>
 
 </body>
 </html>

@@ -14,6 +14,9 @@ public class Subject {
     int id;
     String name;
 
+    @OneToOne(mappedBy = "subject")
+    ExamMark examMark;
+
     @ManyToMany(mappedBy = "requiredSubjects")
     Set<Faculty> faculties=new HashSet<Faculty>();
 

@@ -2,6 +2,7 @@ package com.example.EntrantsSystem.services;
 
 import com.example.EntrantsSystem.domain.Faculty;
 import com.example.EntrantsSystem.domain.Statement;
+import com.example.EntrantsSystem.domain.Subject;
 import com.example.EntrantsSystem.domain.User;
 import com.example.EntrantsSystem.dto.StatementDto;
 import com.example.EntrantsSystem.repositories.StatementRepository;
@@ -87,5 +88,14 @@ public class StatementService {
 
     public void deleteStatement(int facultyId,int userId) {
         statementRepository.deleteByFacultyIdAndUserId(facultyId,userId);
+    }
+
+    public boolean checkIfContainsRequiredSubjects(Subject[] requiredSubjects,List<String> userSubjects){
+        for(int i=0;i<3;i++){
+            if(!userSubjects.contains(requiredSubjects[i].getName())){
+                return false;
+            }
+        }
+        return true;
     }
 }

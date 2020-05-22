@@ -13,11 +13,16 @@ public class Certificate {
     private String identificationNumber;
     private double averageGrade;
 
-
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Certificate() {
+    }
+
+    public Certificate(String identificationNumber, double averageGrade) {
+        this.identificationNumber = identificationNumber;
+        this.averageGrade = averageGrade;
     }
 
     public int getId() {
@@ -26,6 +31,14 @@ public class Certificate {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public double getAverageGrade() {
+        return averageGrade;
+    }
+
+    public void setAverageGrade(double averageGrade) {
+        this.averageGrade = averageGrade;
     }
 
     public String getIdentificationNumber() {
