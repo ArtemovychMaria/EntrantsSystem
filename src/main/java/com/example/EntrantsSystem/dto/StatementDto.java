@@ -6,7 +6,7 @@ public class StatementDto {
     int subjectGrade1;
     int subjectGrade2;
     int subjectGrade3;
-    int certificateGrade;
+    double certificateGrade;
 
     public int getFacultyId() {
         return facultyId;
@@ -40,11 +40,11 @@ public class StatementDto {
         this.subjectGrade3 = subjectGrade3;
     }
 
-    public int getCertificateGrade() {
+    public double getCertificateGrade() {
         return certificateGrade;
     }
 
-    public void setCertificateGrade(int certificateGrade) {
+    public void setCertificateGrade(double certificateGrade) {
         this.certificateGrade = certificateGrade;
     }
 }

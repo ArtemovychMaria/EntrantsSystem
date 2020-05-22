@@ -31,6 +31,9 @@ public class User {
     @Column(name = "photo_id")
     String photoId;
 
+    @OneToOne(mappedBy = "user")
+    Certificate certificate;
+
     @Enumerated(EnumType.ORDINAL)
     @ElementCollection(targetClass = UserRole.class,fetch = FetchType.EAGER)
     private Set<UserRole> roles;
